@@ -7,7 +7,8 @@ import {
 } from "react-router-dom";
 import { appRoutes } from "./constants/routes";
 
-const DashboardPage = lazy(() => import("@pages/Dashboard"));
+const DashboardPage = lazy(() => import("@pages/DashboardPage"));
+const SettingsPage = lazy(() => import("@pages/SettingsPage"));
 
 const App = () => {
   return (
@@ -19,10 +20,7 @@ const App = () => {
             element={<Navigate to="/dashboard" replace />}
           />
           <Route path={appRoutes.DASHBOARD_LINK} element={<DashboardPage />} />
-          <Route
-            path={appRoutes.SETTINGS_LINK}
-            element={<p>Coming soon...</p>}
-          />
+          <Route path={appRoutes.SETTINGS_LINK} element={<SettingsPage />} />
 
           {/* 404 Not found */}
           <Route path="*" element={<p>Page Not Found</p>} />
