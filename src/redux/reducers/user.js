@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { sidebarContent } from "../../constants/content";
 
 export const userSlice = createSlice({
   name: "user",
   initialState: {
     loading: false,
-    errors: {},
-    data: {
+    errors: null,
+    activeTab: sidebarContent.dashboard,
+    profile: {
       name: "Abdulfatahi Ishaq",
       email: "abfatahi.iaf@gmail.com",
       userName: "abfat_snr",
@@ -18,9 +20,14 @@ export const userSlice = createSlice({
       country: "Nigeria",
     },
   },
-  reducers: {},
+  reducers: {
+    handleTabChange: (state, { payload }) => {
+      state.activeTab = payload;
+      return state;
+    },
+  },
 });
 
-export const {} = userSlice.actions;
+export const { handleTabChange } = userSlice.actions;
 
 export const userSelector = (state) => state.user;

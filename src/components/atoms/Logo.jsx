@@ -6,7 +6,7 @@ import LogoImage from "@assets/icons/logo.svg";
 const Logo = () => {
   return (
     <LogoContainer>
-      <img src={LogoImage} />
+      <img src={LogoImage} alt="App logo"/>
       <p>{sidebarContent.appName}</p>
     </LogoContainer>
   );
