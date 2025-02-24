@@ -17,6 +17,14 @@ const SidebarContainer = styled.aside`
   border-right: 1px solid var(--color-primary-lighter);
   z-index: (--z-index-low);
 
+  .active {
+    border-left: 6px solid var(--color-black);
+
+    p {
+      color: var(--color-black);
+    }
+  }
+
   @media (max-width: 425px) {
     display: none;
   }

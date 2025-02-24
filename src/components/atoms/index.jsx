@@ -1,1 +1,1 @@
-export { default as AsideNavLink } from "./AsideNavLink/AsideNavLink";
+export { default as AsideNavLink } from "./AsideNavLink";

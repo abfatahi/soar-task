@@ -4,7 +4,7 @@ import { userSelector } from "@/redux/reducers/user";
 
 import { DashboardLayout } from "@components/layouts";
 
-function DashboardPageComponent() {
+function DashboardPage() {
   const [count, setCount] = useState(0);
   const { data } = useSelector(userSelector);
 
@@ -12,6 +12,7 @@ function DashboardPageComponent() {
     <DashboardLayout>
       {
         <>
+          <h1>Overview</h1>
           <p>Name: {data.name}</p>
           <p>Email: {data.email}</p>
         </>
@@ -20,4 +21,4 @@ function DashboardPageComponent() {
   );
 }
 
-export default DashboardPageComponent;
+export default DashboardPage;
