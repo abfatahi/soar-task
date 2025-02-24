@@ -15,7 +15,7 @@ const SidebarContainer = styled.aside`
   width: 250px;
   background-color: var(--color-light);
   border-right: 1px solid var(--color-primary-lighter);
-  z-index: 100;
+  z-index: (--z-index-low);
 
   @media (max-width: 425px) {
     display: none;
@@ -30,7 +30,7 @@ const NavbarContainer = styled.nav`
   width: calc(100vw - 250px);
   background-color: var(--color-light);
   border-bottom: 1px solid var(--color-primary-lighter);
-  z-index: 100;
+  z-index: (--z-index-medium);
 
   @media (max-width: 425px) {
     margin-left: 0;
@@ -45,7 +45,7 @@ const ContentContainer = styled.main`
   min-height: calc(100vh - 101px);
   background: var(--color-gray-lightest);
   padding: 16px;
-  z-index: 10;
+  z-index: (--z-index-low);
 
   @media (max-width: 425px) {
     left: 0;

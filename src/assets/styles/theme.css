@@ -2,8 +2,12 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
-  /* theme colors */
+  /* Theme colors */
   --color-primary: rgba(52, 60, 106, 1);
   --color-primary-light: rgba(113, 142, 191, 1);
   --color-primary-lighter: rgba(223, 234, 242, 1);
@@ -24,14 +28,17 @@
 
   --color-info: rgba(57, 106, 255, 1);
 
+  /* Theme z-indexes */
+  --z-index-low: 10;
+  --z-index-medium: 20;
+  --z-index-high: 50;
+  --z-index-highest: 100;
+
+
   color-scheme: light dark;
   color: var(--color-primary);
   background-color: var(--color-light);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 /* *, */
