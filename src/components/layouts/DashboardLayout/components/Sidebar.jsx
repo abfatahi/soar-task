@@ -1,23 +1,18 @@
 import Logo from "@components/atoms/Logo";
 import { SidebarContainer } from "../DashboardLayout.module";
+import { AsideNavLink } from "@components/atoms";
+
 import { sidebarContent } from "@/constants/content";
 import { appRoutes } from "@/constants/routes";
 
-import DashboardIcon from "@assets/icons/dashboard.svg";
-import DashboardActiveIcon from "@assets/icons/dashboard-active.svg";
-import TransactionsIcon from "@assets/icons/transactions.svg";
-import AccountsIcon from "@assets/icons/accounts.svg";
-import InvestmentsIcon from "@assets/icons/investments.svg";
-import CreditCardsIcon from "@assets/icons/credit-cards.svg";
-import LoansIcon from "@assets/icons/loans.svg";
-import ServicesIcon from "@assets/icons/services.svg";
-import PriviledgesIcon from "@assets/icons/priviledges.svg";
-import SettingsIcon from "@assets/icons/settings.svg";
-import SettingsActiveIcon from "@assets/icons/settings-active.svg";
-import { AsideNavLink } from "../../../atoms";
+import { useSelector } from "react-redux";
+import { userSelector } from "@/redux/reducers/user";
+
+// Icons
+import Icons from "@/constants/icons";
 
 const Sidebar = () => {
-  const activeTab = "/dashboard";
+  const { activeTab } = useSelector(userSelector);
   return (
     <SidebarContainer>
       <Logo />
@@ -27,7 +22,7 @@ const Sidebar = () => {
           <AsideNavLink
             key={tab.key}
             {...rest}
-            isActive={activeTab === tab.link}
+            isActive={activeTab === tab.text}
           />
         );
       })}
@@ -38,57 +33,57 @@ const Sidebar = () => {
 const sidebarLinks = [
   {
     key: "link_dashboard",
-    icon: DashboardIcon,
-    iconActive: DashboardActiveIcon,
+    icon: Icons.DashboardIcon,
+    iconActive: Icons.DashboardActiveIcon,
     text: sidebarContent.dashboard,
     link: appRoutes.DASHBOARD_LINK,
   },
   {
     key: "link_transactions",
-    icon: TransactionsIcon,
+    icon: Icons.TransactionsIcon,
     text: sidebarContent.transactions,
     link: appRoutes.HOME_LINK,
   },
   {
     key: "link_account",
-    icon: AccountsIcon,
+    icon: Icons.AccountsIcon,
     text: sidebarContent.accounts,
     link: appRoutes.HOME_LINK,
   },
   {
     key: "link_investment",
-    icon: InvestmentsIcon,
+    icon: Icons.InvestmentsIcon,
     text: sidebarContent.investments,
     link: appRoutes.HOME_LINK,
   },
   {
     key: "link_credit_card",
-    icon: CreditCardsIcon,
+    icon: Icons.CreditCardsIcon,
     text: sidebarContent.creditCards,
     link: appRoutes.HOME_LINK,
   },
   {
     key: "link_loans",
-    icon: LoansIcon,
+    icon: Icons.LoansIcon,
     text: sidebarContent.loans,
     link: appRoutes.HOME_LINK,
   },
   {
     key: "link_services",
-    icon: ServicesIcon,
+    icon: Icons.ServicesIcon,
     text: sidebarContent.services,
     link: appRoutes.HOME_LINK,
   },
   {
     key: "link_priviledges",
-    icon: PriviledgesIcon,
+    icon: Icons.PriviledgesIcon,
     text: sidebarContent.myPriviledges,
     link: appRoutes.HOME_LINK,
   },
   {
     key: "link_settins",
-    icon: SettingsIcon,
-    iconActive: SettingsActiveIcon,
+    icon: Icons.SettingsIcon,
+    iconActive: Icons.SettingsActiveIcon,
     text: sidebarContent.settings,
     link: appRoutes.SETTINGS_LINK,
   },
