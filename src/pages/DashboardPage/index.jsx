@@ -1,7 +1,9 @@
+import { DashboardLayout } from "@components/layouts";
+
 import { useSelector } from "react-redux";
 import { userSelector } from "@/redux/reducers/user";
+import LoadingSpinner from "@/components/atoms/Spinner";
 
-import { DashboardLayout } from "@components/layouts";
 
 function DashboardPage() {
   const { profile } = useSelector(userSelector);
@@ -13,6 +15,7 @@ function DashboardPage() {
           <h1>Overview</h1>
           <p>Name: {profile.name}</p>
           <p>Email: {profile.email}</p>
+          <LoadingSpinner/>
         </>
       }
     </DashboardLayout>

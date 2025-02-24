@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useCallback } from "react";
 
 import { handleTabChange } from "../../redux/reducers/user";
-import { sidebarContent } from "../../constants/content";
+import { layoutContent } from "../../constants/content";
 
 import styled from "styled-components";
 
@@ -16,7 +16,7 @@ const AsideNavLink = ({ icon, iconActive, text, isActive, link }) => {
     const validPages = ["Dashboard", "Settings"];
     const currentTab = validPages.includes(text)
       ? text
-      : sidebarContent.dashboard;
+      : layoutContent.dashboard;
 
     dispatch(handleTabChange(currentTab));
   }, [dispatch, text]);
