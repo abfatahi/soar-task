@@ -1,8 +1,8 @@
 import { useState } from "react";
-import reactLogo from "../../assets/react.svg";
+import reactLogo from "@assets/react.svg";
 import viteLogo from "/vite.svg";
 import { useSelector } from "react-redux";
-import { userSelector } from "../../redux/reducers/user";
+import { userSelector } from "@/redux/reducers/user";
 
 import "./Dashboard.css";
 
