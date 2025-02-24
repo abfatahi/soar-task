@@ -1,12 +1,13 @@
+import styled from "styled-components";
+
 import Logo from "@components/atoms/Logo";
-import { SidebarContainer } from "../DashboardLayout.module";
 import { AsideNavLink } from "@components/atoms";
 
-import { sidebarContent } from "@/constants/content";
-import { appRoutes, sidebarLinks } from "@/constants/routes";
+import { sidebarLinks } from "@/constants/routes";
 
 import { useSelector } from "react-redux";
 import { userSelector } from "@/redux/reducers/user";
+
 
 const Sidebar = () => {
   const { activeTab } = useSelector(userSelector);
@@ -28,3 +29,26 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+const SidebarContainer = styled.aside`
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: var(--color-light);
+  border-right: 1px solid var(--color-primary-lighter);
+  z-index: (--z-index-low);
+
+  .active {
+    border-left: 6px solid var(--color-black);
+
+    p {
+      color: var(--color-black);
+    }
+  }
+
+  @media (max-width: 425px) {
+    display: none;
+  }
+`;

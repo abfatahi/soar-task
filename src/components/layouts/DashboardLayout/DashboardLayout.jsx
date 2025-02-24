@@ -1,5 +1,6 @@
 
-import { LayoutContainer } from "./DashboardLayout.module";
+import styled from "styled-components";
+
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
@@ -15,3 +16,10 @@ const DashboardLayout = ({ children }) => {
 };
 
 export default DashboardLayout;
+
+const LayoutContainer = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-light);
+`;

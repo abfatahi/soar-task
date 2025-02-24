@@ -1,7 +1,8 @@
+import { DashboardLayout } from "@components/layouts";
+
 import { useSelector } from "react-redux";
 import { userSelector } from "@/redux/reducers/user";
 
-import { DashboardLayout } from "@components/layouts";
 
 function DashboardPage() {
   const { profile } = useSelector(userSelector);
