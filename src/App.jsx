@@ -6,6 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { appRoutes } from "./constants/routes";
+import Loader from "./components/atoms/Loader";
 
 const DashboardPage = lazy(() => import("@pages/DashboardPage"));
 const SettingsPage = lazy(() => import("@pages/SettingsPage"));
@@ -13,7 +14,7 @@ const SettingsPage = lazy(() => import("@pages/SettingsPage"));
 const App = () => {
   return (
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader/>}>
         <Routes>
           <Route
             path={appRoutes.HOME_LINK}

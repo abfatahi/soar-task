@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { sidebarContent } from "../../constants/content";
+import { layoutContent } from "../../constants/content";
 
 export const userSlice = createSlice({
   name: "user",
   initialState: {
     loading: false,
     errors: null,
-    activeTab: sidebarContent.dashboard,
+    activeTab: layoutContent.dashboard,
     profile: {
       name: "Abdulfatahi Ishaq",
       email: "abfatahi.iaf@gmail.com",

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { sidebarContent } from "@/constants/content";
+import { layoutContent } from "@/constants/content";
 
 import LogoImage from "@assets/icons/logo.svg";
 
@@ -7,7 +7,7 @@ const Logo = () => {
   return (
     <LogoContainer>
       <img src={LogoImage} alt="App logo"/>
-      <p>{sidebarContent.appName}</p>
+      <p>{layoutContent.appName}</p>
     </LogoContainer>
   );
 };

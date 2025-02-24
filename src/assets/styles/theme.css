@@ -18,6 +18,7 @@
 
   --color-light: rgba(255, 255, 255, 1);
 
+  --color-gray-lighter: rgba(245, 247, 250, 1);
   --color-gray-lightest: rgba(237, 241, 247, 1);
 
   --color-danger: rgba(255, 75, 74, 1);
@@ -41,7 +42,7 @@
 
 }
 
-/* *, */
+*,
 *:before,
 *:after {
   margin: 0;
