@@ -1,21 +1,34 @@
+import { useEffect, useState } from "react";
+
 import { DashboardLayout } from "@components/layouts";
 
-import { useSelector } from "react-redux";
-import { userSelector } from "@/redux/reducers/user";
-import LoadingSpinner from "@/components/atoms/Spinner";
+// Api calls
+import { getCards } from "../../services/apis/cards";
 
+import { maskCardNumber } from "@/services/helpers/string";
 
 function DashboardPage() {
-  const { profile } = useSelector(userSelector);
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    getCards().then((res) => {
+      setCards(res.data);
+    });
+  }, []);
 
   return (
     <DashboardLayout>
       {
         <>
-          <h1>Overview</h1>
-          <p>Name: {profile.name}</p>
-          <p>Email: {profile.email}</p>
-          <LoadingSpinner/>
+          {cards?.map((card) => (
+            <div>
+              <p>Balance: {card.availableBalance}</p>
+              <p>Card Holder: {card.holder}</p>
+              <p>Card Number: {maskCardNumber(card.number)}</p>
+              <p>Valid Thru: {card.expiryDate}</p>
+              <br />
+            </div>
+          ))}
         </>
       }
     </DashboardLayout>
