@@ -20,6 +20,20 @@ const transactions = [
     date: "2021-01-21",
     amount: "5400",
   },
+  {
+    type: "debit",
+    description: "John Doe",
+    provider: "card",
+    date: "2021-01-21",
+    amount: "500",
+  },
+  {
+    type: "debit",
+    description: "Sarah Doe",
+    provider: "card",
+    date: "2021-01-20",
+    amount: "1500",
+  },
 ];
 
 const beneficiaries = [
