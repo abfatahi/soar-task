@@ -12,7 +12,7 @@ const ContentContainer = styled.main`
   width: calc(100vw - 250px);
   min-height: calc(100vh - 101px);
   background: var(--color-gray-lightest);
-  padding: 16px;
+  padding: 30px 40px;
   z-index: (--z-index-low);
 
   @media (max-width: 425px) {
