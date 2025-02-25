@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import LoadingSpinner from "./Spinner";
-import { layoutContent } from "../../constants/content";
+import { layoutContent } from "@/constants/content";
 
 const Loader = () => {
   return (

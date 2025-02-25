@@ -1,11 +1,14 @@
-import { DashboardLayout } from "@components/layouts";
 import { useEffect, useState } from "react";
-import { getUserDetails } from "@/services/apis/user";
 import { useDispatch } from "react-redux";
+
+import { getUserDetails } from "@/services/apis/user";
 import { handleTabChange } from "@/redux/reducers/user";
+
 import Tabs from "@components/organisms/Tab";
-import { settingsPageContent } from "@/constants/content";
+import { DashboardLayout } from "@components/layouts";
 import EditProfileTab from "./components/EditProfileTab";
+
+import { settingsPageContent } from "@/constants/content";
 
 const SettingsPage = () => {
   const dispatch = useDispatch();
