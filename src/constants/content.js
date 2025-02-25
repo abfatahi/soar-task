@@ -13,7 +13,16 @@ const layoutContent = {
   settings: "Settings",
   // Navbar
   overview: "Overview",
-  searchPlaceholder: "Search for something"
+  searchPlaceholder: "Search for something",
 };
 
-export { layoutContent };
+const overviewPageContent = {
+  balance: "Balance",
+  cardHolder: "Card holder",
+  validThru: "Valid Thru",
+  myCards: "My cards",
+  seeAll: "See all",
+  recentTransaction: "Recent transaction",
+};
+
+export { layoutContent, overviewPageContent };

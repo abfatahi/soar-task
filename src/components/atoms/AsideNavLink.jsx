@@ -43,11 +43,11 @@ const AsideNavLinkContainer = styled(Link)`
   gap: 1.5rem;
   padding-left: 30px;
   text-decoration: none;
-  border-left: 6px solid var(--color-light);
+  border-left: 6px solid var(--color-white);
 
   p {
     font-size: 18px;
     font-weight: 500;
-    color: var(--color-black-light);
+    color: var(--color-black-lightest);
   }
 `;

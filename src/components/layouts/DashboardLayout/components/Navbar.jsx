@@ -64,7 +64,7 @@ const NavbarContainer = styled.nav`
   justify-content: space-between;
   height: 101px;
   width: calc(100vw - 250px);
-  background-color: var(--color-light);
+  background-color: var(--color-white);
   border-bottom: 1px solid var(--color-primary-lighter);
   z-index: var(--z-index-highest);
   padding: 0 40px;
