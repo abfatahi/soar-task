@@ -8,16 +8,16 @@ export const userSlice = createSlice({
     errors: null,
     activeTab: layoutContent.dashboard,
     profile: {
-      name: "Abdulfatahi Ishaq",
-      email: "abfatahi.iaf@gmail.com",
-      userName: "abfat_snr",
-      password: "Test1234!",
-      dateOfBirth: "2005-11-02",
-      presentAddress: "No 12, Bode Thomas Street, Ikeja, Lagos",
-      permanentAddress: "No 12, Bode Thomas Street, Ikeja, Lagos",
-      city: "Ikeja",
-      postalCode: "100111",
-      country: "Nigeria",
+      name: "",
+      email: "",
+      userName: "",
+      password: "",
+      dateOfBirth: "",
+      presentAddress: "",
+      permanentAddress: "",
+      city: "",
+      postalCode: "",
+      country: "",
     },
   },
   reducers: {
@@ -25,9 +25,14 @@ export const userSlice = createSlice({
       state.activeTab = payload;
       return state;
     },
+
+    handleUpdateUserData: (state, { payload }) => {
+      state.profile = payload;
+      return state;
+    },
   },
 });
 
-export const { handleTabChange } = userSlice.actions;
+export const { handleTabChange, handleUpdateUserData } = userSlice.actions;
 
 export const userSelector = (state) => state.user;

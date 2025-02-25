@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-
-import { getUserDetails } from "@/services/apis/user";
+import { useDispatch, useSelector } from "react-redux";
 
 import { settingsPageContent } from "@/constants/content";
 import { formatDate } from "@/services/helpers/date";
@@ -11,34 +10,93 @@ import { Button } from "@components/atoms";
 
 import ProfilePictureImage from "@assets/images/profile.png";
 import EditIcon from "@assets/icons/edit.svg";
+import { userSelector } from "../../../redux/reducers/user";
+import { handleUpdateUserData } from "../../../redux/reducers/user";
+import LoadingSpinner from "../../../components/atoms/Spinner";
 
 const EditProfileTab = () => {
+  const dispatch = useDispatch();
+  const { profile } = useSelector(userSelector);
+
+  // Initialize form state with profile data
   const [userData, setUserData] = useState({
-    name: "",
-    email: "",
-    userName: "",
-    password: "",
-    dateOfBirth: "",
-    presentAddress: "",
-    permanentAddress: "",
-    city: "",
-    postalCode: "",
-    country: "",
+    name: profile.name || "",
+    email: profile.email || "",
+    userName: profile.userName || "",
+    password: profile.password || "",
+    dateOfBirth: profile.dateOfBirth || "",
+    presentAddress: profile.presentAddress || "",
+    permanentAddress: profile.permanentAddress || "",
+    city: profile.city || "",
+    postalCode: profile.postalCode || "",
+    country: profile.country || "",
   });
 
+  // Update form state when profile data is available
   useEffect(() => {
-    getUserDetails().then((res) => {
-      setUserData(res.data);
-    });
-  }, []);
+    if (profile && Object.keys(profile).length > 0) {
+      setUserData(profile);
+    }
+  }, [profile]);
 
+  // If profile data is not available yet, show a loading message
+  if (Object.keys(profile).length === 0) {
+    return (
+      <div>
+        <p>Loading profile data...</p>
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  // Track if the form has been modified
+  const [isFormModified, setIsFormModified] = useState(false);
+
+  // Validate email format
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  // Validate password format (at least 6 characters)
+  const validatePassword = (password) => {
+    return password.length >= 6;
+  };
+
+  // Check if the form is valid
+  const isFormValid = () => {
+    return (
+      validateEmail(userData.email) &&
+      validatePassword(userData.password) &&
+      isFormModified
+    );
+  };
+
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserData((user) => ({ ...user, [name]: value }));
+    setUserData((prev) => ({ ...prev, [name]: value }));
+    setIsFormModified(true);
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!isFormValid()) {
+      alert(
+        "Please ensure all fields are valid and there are changes to save."
+      );
+      return;
+    }
+
+    // Dispatch the updated user data to Redux
+    dispatch(handleUpdateUserData(userData));
+    setIsFormModified(false); // Reset form modification state
   };
 
   return (
-    <EditProfileTabContainer>
+    <EditProfileTabContainer onSubmit={handleSubmit}>
       <ProfilePictureCard>
         <img
           src={ProfilePictureImage}
@@ -76,6 +134,9 @@ const EditProfileTab = () => {
               value={userData.email}
               onChange={handleChange}
             />
+            {!validateEmail(userData.email) && (
+              <p style={{ color: "red" }}>Invalid email format.</p>
+            )}
           </div>
           <div className="inputGroup">
             <p>{settingsPageContent.password}</p>
@@ -85,6 +146,11 @@ const EditProfileTab = () => {
               value={userData.password}
               onChange={handleChange}
             />
+            {!validatePassword(userData.password) && (
+              <p style={{ color: "red" }}>
+                Password must be at least 6 characters.
+              </p>
+            )}
           </div>
           <div className="inputGroup">
             <p>{settingsPageContent.dateOfBirth}</p>
@@ -92,6 +158,7 @@ const EditProfileTab = () => {
               name="dateOfBirth"
               type="text"
               value={formatDate(userData.dateOfBirth)}
+              onChange={handleChange}
             />
           </div>
           <div className="inputGroup">
@@ -144,10 +211,8 @@ const EditProfileTab = () => {
           className="saveButton"
           variant="secondary"
           size="large"
-          onClick={(e) => {
-            e.preventDefault();
-            console.log(userData);
-          }}
+          type="submit"
+          disabled={!isFormValid()} // Disable button if form is invalid or unchanged
         >
           {settingsPageContent.save}
         </Button>
