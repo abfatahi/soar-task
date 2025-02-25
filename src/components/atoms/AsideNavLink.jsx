@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useCallback } from "react";
 
-import { handleTabChange } from "../../redux/reducers/user";
-import { layoutContent } from "../../constants/content";
+import { handleTabChange } from "@/redux/reducers/user";
+import { layoutContent } from "@/constants/content";
 
 import styled from "styled-components";
 

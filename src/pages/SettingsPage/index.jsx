@@ -1,13 +1,19 @@
-import { DashboardLayout } from "@components/layouts";
 import { useEffect, useState } from "react";
-import { getUserDetails } from "../../services/apis/user";
 import { useDispatch } from "react-redux";
-import { handleTabChange } from "../../redux/reducers/user";
+
+import { getUserDetails } from "@/services/apis/user";
+import { handleTabChange } from "@/redux/reducers/user";
+
+import Tabs from "@components/organisms/Tab";
+import { DashboardLayout } from "@components/layouts";
+import EditProfileTab from "./components/EditProfileTab";
+
+import { settingsPageContent } from "@/constants/content";
 
 const SettingsPage = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  dispatch(handleTabChange("Settings"))
+  dispatch(handleTabChange("Settings"));
 
   const [userDetails, setUserDetails] = useState({});
 
@@ -17,21 +23,22 @@ const SettingsPage = () => {
     });
   }, []);
 
-  return (
-    <DashboardLayout>
-      {
-        <>
-          <h1>{userDetails.name}</h1>
-          <p>Email: {userDetails.email} </p>
-          <p>Username: {userDetails.userName} </p>
-          <p>Date of birth: {userDetails.dateOfBirth} </p>
-          <p>Present Address: {userDetails.presentAddress} </p>
-          <p>Permanent Address: {userDetails.permanentAddress} </p>
-          <p>City: {userDetails.city} </p>
-        </>
-      }
-    </DashboardLayout>
-  );
+  const tabs = [
+    {
+      label: settingsPageContent.editProfile,
+      content: <EditProfileTab userDetails={userDetails} />,
+    },
+    {
+      label: settingsPageContent.preferences,
+      content: <div>{settingsPageContent.preferenceTabContent}</div>,
+    },
+    {
+      label: settingsPageContent.security,
+      content: <div>{settingsPageContent.securityTabContent}</div>,
+    },
+  ];
+
+  return <DashboardLayout children={<Tabs tabs={tabs} />} />;
 };
 
 export default SettingsPage;

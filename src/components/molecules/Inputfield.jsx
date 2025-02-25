@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const InputField = ({
+  skin = "outline",
   type = "text",
   placeholder,
   value,
@@ -11,14 +12,14 @@ const InputField = ({
   ...props
 }) => {
   return (
-    <InputContainer className={className}>
+    <InputContainer className={className} $isFlat={skin === "flat"}>
       {icon && <IconWrapper src={icon} alt={`${type}-icon`} />}
       <StyledInput
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        hasIcon={!!icon}
+        $hasIcon={!!icon}
         {...props}
       />
     </InputContainer>
@@ -26,6 +27,7 @@ const InputField = ({
 };
 
 InputField.propTypes = {
+  skin: PropTypes.oneOf(["outline", "flat"]),
   type: PropTypes.oneOf(["text", "email", "password", "search"]),
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
@@ -40,9 +42,12 @@ const InputContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  width: 255px;
-  background: var(--color-gray-lighter);
-  border-radius: 40px;
+  width: ${({ $isFlat }) => ($isFlat ? "255px" : "100%")};
+  border: ${({ $isFlat }) =>
+    $isFlat ? "none" : "1px solid var(--color-primary-lighter)"};
+  background: ${({ $isFlat }) =>
+    $isFlat ? "var(--color-gray-lighter)" : "transparent"};
+  border-radius: ${({ $isFlat }) => ($isFlat ? "40px" : "15px")};
 `;
 
 const IconWrapper = styled.img`
@@ -57,7 +62,7 @@ const IconWrapper = styled.img`
 
 const StyledInput = styled.input`
   width: 100%;
-  padding: ${({ hasIcon }) => (hasIcon ? "0 20px 0 50px" : "20px")};
+  padding: ${({ $hasIcon }) => ($hasIcon ? "0 20px 0 50px" : "20px")};
   height: 50px;
   font-size: 15px;
   font-weight: 400;
