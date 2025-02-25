@@ -40,7 +40,7 @@
 
   color-scheme: light dark;
   color: var(--color-primary);
-  background-color: var(--color-light);
+  background-color: var(--color-white);
 }
 
 *,

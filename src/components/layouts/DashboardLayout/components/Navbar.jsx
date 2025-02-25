@@ -33,8 +33,8 @@ const Navbar = () => {
         />
 
         {NavCTAs.map((cta) => (
-          <div className="icon_with_background">
-            <img key={cta.title} src={cta.icon} alt={cta.title} />
+          <div key={cta.title} className="icon_with_background">
+            <img src={cta.icon} alt={cta.title} />
           </div>
         ))}
 

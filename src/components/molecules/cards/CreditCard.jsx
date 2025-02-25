@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { overviewPageContent } from "@/constants/content";
-import { maskCardNumber, formatBalance } from "@/services/helpers/string";
+import { maskCardNumber, formatAmount } from "@/services/helpers/string";
 
 import CardChipLight from "@assets/images/card-chip-light.png";
 import CardChipDark from "@assets/images/card-chip-dark.png";
@@ -16,7 +16,7 @@ const CreditCard = ({ theme, name, expiryDate, number, availableBalance }) => {
       <div className="flexGroup balanceGroup">
         <div>
           <h3>{overviewPageContent.balance}</h3>
-          <p className="balance">{formatBalance(availableBalance)}</p>
+          <p className="balance">{formatAmount(availableBalance)}</p>
         </div>
         <CardImage
           isDarkTheme={isDarkTheme}
