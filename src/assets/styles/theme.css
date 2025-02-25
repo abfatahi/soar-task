@@ -13,10 +13,13 @@
   --color-primary-lighter: rgba(223, 234, 242, 1);
   --color-primary-lightest: rgba(230, 239, 245, 1);
 
-  --color-black: rgba(35, 35, 35, 1);
-  --color-black-light: rgba(177, 177, 177, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-black-light: rgba(35, 35, 35, 1);
+  --color-black-lighter: rgba(91, 90, 111, 1);
+  --color-black-lightest: rgba(177, 177, 177, 1);
 
-  --color-light: rgba(255, 255, 255, 1);
+  --color-white: rgba(255, 255, 255, 1);
+  --color-white-rgb: 255 255 255;
 
   --color-gray-lighter: rgba(245, 247, 250, 1);
   --color-gray-lightest: rgba(237, 241, 247, 1);
