@@ -13,7 +13,7 @@ const Tabs = ({ tabs }) => {
             active={activeTab === index}
             onClick={() => setActiveTab(index)}
           >
-            {tab.label}
+            <h2>{tab.label}</h2>
           </TabButton>
         ))}
       </TabList>
@@ -28,6 +28,7 @@ const TabsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-height: 700px;
   background: var(--color-white);
   padding: 1.5rem;
   border-radius: 25px;
@@ -47,13 +48,21 @@ const TabButton = styled.button`
   background: none;
   outline: none;
   transition: all 0.3s ease;
-  color: var(--color-primary-light);
+
+  h2 {
+    color: var(--color-primary-light);
+    font-size: 16px;
+    font-weight: 500;
+  }
 
   ${({ active }) =>
     active &&
     `
     border-bottom: 3px solid var(--color-primary);
-    color:var(--color-primary);
+
+    h2{
+      color:var(--color-primary);
+    }
     
   `}
 
