@@ -25,6 +25,7 @@ const Navbar = () => {
       <h1>{title}</h1>
       <div className="nav_group">
         <InputField
+          skin="flat"
           type="search"
           placeholder={layoutContent.searchPlaceholder}
           value={searchQuery}
@@ -79,9 +80,10 @@ const NavbarContainer = styled.nav`
     align-items: center;
     gap: 30px;
 
-    profile_image {
+    .profile_image {
       width: 60px;
       height: 60px;
+      border-radius: 50%;
     }
   }
 

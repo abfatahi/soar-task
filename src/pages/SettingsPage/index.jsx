@@ -1,10 +1,11 @@
 import { DashboardLayout } from "@components/layouts";
 import { useEffect, useState } from "react";
-import { getUserDetails } from "../../services/apis/user";
+import { getUserDetails } from "@/services/apis/user";
 import { useDispatch } from "react-redux";
-import { handleTabChange } from "../../redux/reducers/user";
-import Tabs from "../../components/organisms/Tab";
-import { settingsPageContent } from "../../constants/content";
+import { handleTabChange } from "@/redux/reducers/user";
+import Tabs from "@components/organisms/Tab";
+import { settingsPageContent } from "@/constants/content";
+import EditProfileTab from "./components/EditProfileTab";
 
 const SettingsPage = () => {
   const dispatch = useDispatch();
@@ -22,17 +23,7 @@ const SettingsPage = () => {
   const tabs = [
     {
       label: settingsPageContent.editProfile,
-      content: (
-        <div>
-          <h1>{userDetails.name}</h1>
-          <p>Email: {userDetails.email} </p>
-          <p>Username: {userDetails.userName} </p>
-          <p>Date of birth: {userDetails.dateOfBirth} </p>
-          <p>Present Address: {userDetails.presentAddress} </p>
-          <p>Permanent Address: {userDetails.permanentAddress} </p>
-          <p>City: {userDetails.city} </p>
-        </div>
-      ),
+      content: <EditProfileTab userDetails={userDetails} />,
     },
     {
       label: settingsPageContent.preferences,
