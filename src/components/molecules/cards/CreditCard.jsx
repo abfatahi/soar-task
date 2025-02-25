@@ -69,7 +69,7 @@ const CreditCardContainer = styled.div`
   border-radius: 25px;
   padding: 24px;
   border: ${({ $isDarkTheme }) =>
-    $isDarkTheme ? "1px solid var(--color-primary-lighter)" : "none"};
+    !$isDarkTheme ? "1px solid var(--color-primary-lighter)" : "none"};
   background: ${({ $isDarkTheme }) =>
     $isDarkTheme
       ? "linear-gradient(to right, var(--color-black-lighter), var(--color-black))"
@@ -120,19 +120,21 @@ const CreditCardContainer = styled.div`
       font-size: 20px;
       font-weight: 600;
       color: ${({ $isDarkTheme }) =>
-        $isDarkTheme ? "var(--color-primary-lightest)" : "var(--color-primary)"};
+        $isDarkTheme
+          ? "var(--color-primary-lightest)"
+          : "var(--color-primary)"};
     }
   }
 
   .cardNumberGroup {
-    padding: 24px;
     position: absolute;
+    padding: 24px;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 70px;
     border-top: ${({ $isDarkTheme }) =>
-      !$isDarkTheme ? "2px solid var(--color-primary-lighter)" : "none"};
+      !$isDarkTheme ? "1px solid var(--color-primary-lighter)" : "none"};
     background: ${({ $isDarkTheme }) =>
       $isDarkTheme
         ? "linear-gradient(to right, rgb(var(--color-white-rgb) / 10%), rgb(var(--color-white-rgb) / 07%))"

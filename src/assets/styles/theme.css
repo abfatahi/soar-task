@@ -38,11 +38,9 @@
   --z-index-high: 50;
   --z-index-highest: 100;
 
-
   color-scheme: light dark;
   color: var(--color-primary);
   background-color: var(--color-light);
-
 }
 
 *,
@@ -74,4 +72,8 @@ body {
   place-items: center;
   padding: 0;
   overflow-x: hidden !important;
+}
+
+a {
+  text-decoration: none !important;
 }
