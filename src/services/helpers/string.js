@@ -5,7 +5,7 @@ const maskCardNumber = (cardNumber) => {
   );
 };
 
-const formatBalance = (number) => {
+const formatAmount = (number) => {
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -13,4 +13,4 @@ const formatBalance = (number) => {
   return formatter.format(number) ?? 0;
 };
 
-export { maskCardNumber, formatBalance };
+export { maskCardNumber, formatAmount };

@@ -20,9 +20,9 @@ const overviewPageContent = {
   balance: "Balance",
   cardHolder: "Card holder",
   validThru: "Valid Thru",
-  myCards: "My cards",
-  seeAll: "See all",
-  recentTransaction: "Recent transaction",
+  myCards: "My Cards",
+  seeAll: "See All",
+  recentTransaction: "Recent Transactions",
 };
 
 export { layoutContent, overviewPageContent };

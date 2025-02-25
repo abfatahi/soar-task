@@ -16,7 +16,7 @@ const transactions = [
   {
     type: "credit",
     description: "Jemi Wilson",
-    provider: "bitcoin",
+    provider: "venmo",
     date: "2021-01-21",
     amount: "5400",
   },
