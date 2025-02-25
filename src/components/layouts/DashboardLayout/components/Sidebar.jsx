@@ -36,7 +36,7 @@ const SidebarContainer = styled.aside`
   top: 0;
   height: 100vh;
   width: 250px;
-  background-color: var(--color-light);
+  background-color: var(--color-white);
   border-right: 1px solid var(--color-primary-lighter);
   z-index: (--z-index-low);
 

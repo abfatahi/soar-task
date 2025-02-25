@@ -5,7 +5,7 @@ import { DashboardLayout } from "@components/layouts";
 // Api calls
 import { getCards } from "../../services/apis/cards";
 
-import { maskCardNumber } from "@/services/helpers/string";
+import { CreditCard } from "../../components/molecules";
 
 function DashboardPage() {
   const [cards, setCards] = useState([]);
@@ -20,15 +20,11 @@ function DashboardPage() {
     <DashboardLayout>
       {
         <>
-          {cards?.map((card) => (
-            <div>
-              <p>Balance: {card.availableBalance}</p>
-              <p>Card Holder: {card.holder}</p>
-              <p>Card Number: {maskCardNumber(card.number)}</p>
-              <p>Valid Thru: {card.expiryDate}</p>
-              <br />
-            </div>
-          ))}
+          <section>
+            {cards?.map((card, index) => (
+              <CreditCard key={`card-${index}`} {...card} />
+            ))}
+          </section>
         </>
       }
     </DashboardLayout>

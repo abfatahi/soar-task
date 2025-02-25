@@ -21,5 +21,5 @@ const LayoutContainer = styled.div`
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-color: var(--color-light);
+  background-color: var(--color-white);
 `;
