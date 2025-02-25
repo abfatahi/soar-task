@@ -42,7 +42,7 @@ const InputContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  width: 255px;
+  width: ${({ $isFlat }) => ($isFlat ? "255px" : "100%")};
   border: ${({ $isFlat }) =>
     $isFlat ? "none" : "1px solid var(--color-primary-lighter)"};
   background: ${({ $isFlat }) =>

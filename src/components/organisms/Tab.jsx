@@ -28,7 +28,7 @@ const TabsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 700px;
+  min-height: 717px;
   background: var(--color-white);
   padding: 1.5rem;
   border-radius: 25px;
@@ -48,6 +48,7 @@ const TabButton = styled.button`
   background: none;
   outline: none;
   transition: all 0.3s ease;
+  border-bottom: 3px solid var(--color-white);
 
   h2 {
     color: var(--color-primary-light);
@@ -72,6 +73,6 @@ const TabButton = styled.button`
 `;
 
 const TabContent = styled.div`
-  padding: 20px;
+  padding: 2rem 0 1rem 2rem;
   border-top: none;
 `;
