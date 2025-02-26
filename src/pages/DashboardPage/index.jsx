@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useEffect, useState } from "react";
 
 import { DashboardLayout } from "@components/layouts";
@@ -11,9 +10,18 @@ import { CreditCard, TransactionCard } from "../../components/molecules";
 import { overviewPageContent } from "../../constants/content";
 import { Link } from "react-router-dom";
 
+import {
+  CardSectionWrapper,
+  Container,
+  TransactionSectionWrapper,
+} from "./styles";
+import WeeklyActivityChart from "./components/WeeklyActivityChart";
+import { getWeeklyActivities } from "../../services/apis/statistics";
+
 function DashboardPage() {
   const [cards, setCards] = useState([]);
   const [transactions, setTransactions] = useState([]);
+  const [weeklyActivities, setWeeklyActivities] = useState({});
 
   useEffect(() => {
     getCards().then((res) => {
@@ -23,6 +31,10 @@ function DashboardPage() {
     getTransactions().then((res) => {
       setTransactions(res.data);
     });
+
+    getWeeklyActivities().then((res) => {
+      setWeeklyActivities(res.data);
+    });
   }, []);
 
   return (
@@ -30,7 +42,7 @@ function DashboardPage() {
       {
         <Container>
           <div className="sectionGroup">
-            <SectionWrapper>
+            <CardSectionWrapper>
               <div className="titleGroup">
                 <h2>{overviewPageContent.myCards}</h2>
                 <Link>{overviewPageContent.seeAll}</Link>
@@ -40,8 +52,8 @@ function DashboardPage() {
                   <CreditCard key={`card-${index}`} {...card} />
                 ))}
               </div>
-            </SectionWrapper>
-            <SectionWrapper>
+            </CardSectionWrapper>
+            <TransactionSectionWrapper>
               <div className="titleGroup">
                 <h2>{overviewPageContent.recentTransaction}</h2>
               </div>
@@ -53,7 +65,10 @@ function DashboardPage() {
                   />
                 ))}
               </div>
-            </SectionWrapper>
+            </TransactionSectionWrapper>
+          </div>
+          <div className="sectionGroup">
+            <WeeklyActivityChart weeklyActivities={weeklyActivities} />
           </div>
         </Container>
       }
@@ -62,66 +77,3 @@ function DashboardPage() {
 }
 
 export default DashboardPage;
-
-const Container = styled.div`
-  .sectionGroup {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
-
-    @media (max-width: 1024px) {
-      grid-template-columns: 1fr;
-    }
-  }
-`;
-
-const SectionWrapper = styled.section`
-  overflow-x: scroll !important;
-
-  .titleGroup {
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  h2 {
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--color-primary);
-  }
-
-  .cardGroup {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-
-    @media (max-width: 768px) {
-      width: 100%;
-      display: flex;
-      overflow-x: scroll !important;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      gap: 16px;
-      padding-bottom: 10px; 
-      white-space: nowrap; 
-    }
-  }
-
-  a {
-    color: var(--color-primary);
-  }
-
-  .transactionsGroup {
-    background: var(--color-white);
-    border-radius: 25px;
-    padding: 24px;
-    height: 235px;
-  }
-
-  .sectionGroup {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
-  }
-`;

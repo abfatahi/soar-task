@@ -1,54 +1,7 @@
-const weeklyActivities = [
-  {
-    day: "saturday",
-    activities: [
-      { type: "deposit", amount: "250" },
-      { type: "withdraw", amount: "480" },
-    ],
-  },
-  {
-    day: "sunday",
-    activities: [
-      { type: "deposit", amount: "120" },
-      { type: "withdraw", amount: "370" },
-    ],
-  },
-  {
-    day: "monday",
-    activities: [
-      { type: "deposit", amount: "310" },
-      { type: "withdraw", amount: "270" },
-    ],
-  },
-  {
-    day: "tuesday",
-    activities: [
-      { type: "deposit", amount: "380" },
-      { type: "withdraw", amount: "480" },
-    ],
-  },
-  {
-    day: "wednessday",
-    activities: [
-      { type: "deposit", amount: "240" },
-      { type: "withdraw", amount: "170" },
-    ],
-  },
-  {
-    day: "thursday",
-    activities: [
-      { type: "deposit", amount: "230" },
-      { type: "withdraw", amount: "400" },
-    ],
-  },
-  {
-    day: "friday",
-    activities: [
-      { type: "deposit", amount: "380" },
-      { type: "withdraw", amount: "400" },
-    ],
-  },
-];
+const weeklyActivities = {
+  deposit: [250, 120, 310, 380, 240, 230, 380],
+  withdraw: [480, 370, 270, 480, 170, 400, 400],
+};
 
 const expensesPercentage = [
   { category: "Entertainment", value: 30 },
