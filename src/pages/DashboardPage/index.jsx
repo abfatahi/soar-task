@@ -55,9 +55,9 @@ function DashboardPage() {
             </CreditCardsWrapper>
             <CardWrapper>
               <div className="titleGroup">
-                <h2>{overviewPageContent.recentTransaction}</h2>
+                <h2 className="titleGroup">{overviewPageContent.recentTransaction}</h2>
               </div>
-              <div className="transactionsGroup">
+              <div className="cardContainer transactionsGroup">
                 {transactions?.slice(0, 3).map((transaction, index) => (
                   <TransactionCard
                     key={`transaction-${index}`}
@@ -68,14 +68,14 @@ function DashboardPage() {
             </CardWrapper>
           </div>
           <div className="sectionGroup">
-            <div className="weeklyActivity">
+            <CardWrapper className="weeklyActivity">
               <div className="titleGroup">
                 <h2>{overviewPageContent.weeklyActivity}</h2>
               </div>
-              <CardWrapper>
+              <div className="cardContainer">
                 <WeeklyActivityChart weeklyActivities={weeklyActivities} />
-              </CardWrapper>
-            </div>
+              </div>
+            </CardWrapper>
           </div>
         </Container>
       }

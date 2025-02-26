@@ -12,6 +12,7 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 30px;
+    margin-bottom: 20px;
 
     @media (max-width: 1024px) {
       grid-template-columns: 1fr;
@@ -66,9 +67,11 @@ const CreditCardsWrapper = styled.section`
 `;
 
 const CardWrapper = styled.section`
-  background: var(--color-white);
-  border-radius: 25px;
-  padding: 24px;
+  .cardContainer {
+    background: var(--color-white);
+    border-radius: 25px;
+    padding: 24px;
+  }
 
   .transactionsGroup {
     height: 235px;
