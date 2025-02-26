@@ -17,6 +17,7 @@ import WeeklyActivityChart from "./components/WeeklyActivityChart";
 import ExpensesStatisticsChart from "./components/ExpensesStatisticsChart";
 
 import { CreditCardsWrapper, CardWrapper, Container } from "./components/styles";
+import BalanceHistory from "./components/BalanceHistory";
 
 function DashboardPage() {
   const [cards, setCards] = useState([]);
@@ -91,6 +92,23 @@ function DashboardPage() {
                 <ExpensesStatisticsChart
                   expensesStatistics={expensesStatistics}
                 />
+              </div>
+            </CardWrapper>
+          </div>
+          <div className="sectionGroup">
+            <CardWrapper className="weeklyActivity">
+              <div className="titleGroup">
+                <h2>{overviewPageContent.balanceHistory}</h2>
+              </div>
+              <div className="cardContainer">
+                <BalanceHistory/>
+              </div>
+            </CardWrapper>
+            <CardWrapper className="weeklyActivity">
+              <div className="titleGroup">
+                <h2>{overviewPageContent.quickTransfer}</h2>
+              </div>
+              <div className="cardContainer">
               </div>
             </CardWrapper>
           </div>
