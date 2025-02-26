@@ -23,7 +23,8 @@ const overviewPageContent = {
   myCards: "My Cards",
   seeAll: "See All",
   recentTransaction: "Recent Transactions",
-  weeklyActivity: "Weekly Activity"
+  weeklyActivity: "Weekly Activity",
+  expensesStatistics: "Expenses Statistics",
 };
 
 const settingsPageContent = {
@@ -46,7 +47,8 @@ const settingsPageContent = {
   securityTabContent: "Security tab content coming soon...",
   invalidEmailFormat: "Invalid email format.",
   invalidPasswordFormat: "Password must be at least 6 characters.",
-  formValidationMessage: "Please ensure all fields are valid and there are changes to save."
+  formValidationMessage:
+    "Please ensure all fields are valid and there are changes to save.",
 };
 
 export { layoutContent, overviewPageContent, settingsPageContent };
