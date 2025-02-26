@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 
 import { DashboardLayout } from "@components/layouts";
+import ErrorBoundary from "@/components/layouts/ErrorBoundary";
+import { Link } from "react-router-dom";
+import { CreditCard, TransactionCard } from "@/components/molecules";
+import WeeklyActivityChart from "./components/WeeklyActivityChart";
+import ExpensesStatisticsChart from "./components/ExpensesStatisticsChart";
+import BalanceHistory from "./components/BalanceHistory";
 
-// Api calls
 import { getCards } from "@/services/apis/cards";
 import { getTransactions } from "@/services/apis/transactions";
 import {
@@ -11,19 +16,13 @@ import {
 } from "@/services/apis/statistics";
 import { getBalanceHistory } from "@/services/apis/balanceHistory";
 
-import { Link } from "react-router-dom";
-import { CreditCard, TransactionCard } from "@/components/molecules";
 import { overviewPageContent } from "@/constants/content";
-import WeeklyActivityChart from "./components/WeeklyActivityChart";
-import ExpensesStatisticsChart from "./components/ExpensesStatisticsChart";
 
 import {
   CreditCardsWrapper,
   CardWrapper,
   Container,
 } from "./components/styles";
-import BalanceHistory from "./components/BalanceHistory";
-import ErrorBoundary from "../../components/layouts/ErrorBoundary";
 
 function DashboardPage() {
   const [cards, setCards] = useState([]);
