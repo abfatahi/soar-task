@@ -1,4 +1,4 @@
-import { balanceHistory } from "../data/balanceHistory";
+import { balanceHistory } from "@/data/balanceHistory";
 
 const getBalanceHistory = () => {
   return new Promise((resolve) => {

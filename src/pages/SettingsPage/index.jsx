@@ -6,7 +6,7 @@ import { handleTabChange } from "@/redux/reducers/user";
 import Tabs from "@components/organisms/Tab";
 import { DashboardLayout } from "@components/layouts";
 import EditProfileTab from "./components/EditProfileTab";
-import ErrorBoundary from "../../components/layouts/ErrorBoundary";
+import ErrorBoundary from "@components/layouts/ErrorBoundary";
 
 import { settingsPageContent } from "@/constants/content";
 

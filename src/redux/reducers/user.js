@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { layoutContent } from "../../constants/content";
+import { layoutContent } from "@/constants/content";
 
 export const userSlice = createSlice({
   name: "user",

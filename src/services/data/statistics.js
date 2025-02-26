@@ -3,11 +3,9 @@ const weeklyActivities = {
   withdraw: [480, 370, 270, 480, 170, 400, 400],
 };
 
-const expensesPercentage = [
-  { category: "Entertainment", value: 30 },
-  { category: "Investment", value: 20 },
-  { category: "Others", value: 35 },
-  { category: "Bill Expense", value: 15 },
-];
+const expensesPercentage = {
+  categories: ["Entertainment", "Bill Expense", "Others", "Investment"],
+  percentages: [30, 15, 35, 20],
+};
 
 export { weeklyActivities, expensesPercentage };
