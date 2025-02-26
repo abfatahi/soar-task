@@ -13,7 +13,11 @@ const ContentContainer = styled.main`
   min-height: calc(100vh - 101px);
   background: var(--color-gray-lightest);
   padding: 30px 40px;
-  z-index: (--z-index-low);
+  z-index: (--z-index-highest);
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 
   @media (max-width: 425px) {
     left: 0;

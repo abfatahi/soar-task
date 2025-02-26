@@ -71,14 +71,19 @@ const StyledInput = styled.input`
   outline: none;
   transition: border-color 0.3s;
   background: transparent;
-  color: var(--color-primary);
+  color: var(--color-primary-light);
 
-  &:focus{
+  &:focus {
     border-color: var(--color-info);
     background: transparent;
   }
 
   &::placeholder {
     color: var(--color-primary-light);
+  }
+
+  @media (max-width: 425px) {
+    height: 40px;
+    font-size: 12px;
   }
 `;

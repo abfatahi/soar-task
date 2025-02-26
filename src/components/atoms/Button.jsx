@@ -34,7 +34,7 @@ const BaseButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 190px;
+  width: 100%;
 
   background-color: ${({ variant }) =>
     variant === "secondary"
@@ -64,5 +64,10 @@ const BaseButton = styled.button`
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  @media (max-width: 425px) {
+    font-size: ${({ size }) =>
+      size === "small" ? "12px" : size === "large" ? "15px" : "14px"};
   }
 `;

@@ -19,7 +19,7 @@ const InputGroup = ({ label, name, type, value, onChange }) => {
 
   return (
     <InputGroupContainer className="inputGroup">
-      <p>{label}</p>
+      <p className="label">{label}</p>
       <InputField
         name={name}
         type={type}
@@ -37,5 +37,11 @@ const InputGroupContainer = styled.div`
   .validationError {
     color: var(--color-danger) !important;
     font-size: 14px;
+  }
+
+  .label {
+    @media (max-width: 768px) {
+      font-size: 13px;
+    }
   }
 `;
