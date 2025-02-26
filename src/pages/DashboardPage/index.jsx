@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { useEffect, useState } from "react";
 
 import { DashboardLayout } from "@components/layouts";
@@ -7,7 +8,6 @@ import { getCards } from "../../services/apis/cards";
 import { getTransactions } from "../../services/apis/transactions";
 
 import { CreditCard, TransactionCard } from "../../components/molecules";
-import styled from "styled-components";
 import { overviewPageContent } from "../../constants/content";
 import { Link } from "react-router-dom";
 
@@ -68,10 +68,16 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 30px;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
   }
 `;
 
 const SectionWrapper = styled.section`
+  overflow-x: scroll !important;
+
   .titleGroup {
     margin-bottom: 20px;
     display: flex;
@@ -89,6 +95,17 @@ const SectionWrapper = styled.section`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      display: flex;
+      overflow-x: scroll !important;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 16px;
+      padding-bottom: 10px; 
+      white-space: nowrap; 
+    }
   }
 
   a {

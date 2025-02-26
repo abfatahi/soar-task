@@ -16,7 +16,11 @@ const TransactionCard = ({ type, description, provider, date, amount }) => {
   return (
     <TransactionCardContainer $isDebit={type === "debit"}>
       <div className="detailGroup">
-        <img src={getCardImage[provider]} alt={description} />
+        <img
+          className="providerLogo"
+          src={getCardImage[provider]}
+          alt={description}
+        />
         <div>
           <p className="description">{description}</p>
           <p className="date">{date}</p>
@@ -43,22 +47,44 @@ const TransactionCardContainer = styled.div`
   gap: 1rem;
   margin-bottom: 10px;
 
+  .providerLogo {
+    width: 55px;
+    height: 55px;
+
+    @media (max-width: 425px) {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
   .detailGroup {
     display: flex;
     align-items: center;
     gap: 1rem;
 
     .description {
-    font-weight: 500;
+      font-weight: 600;
+
+      @media (max-width: 425px) {
+        font-size: 14px;
+      }
     }
 
-    .date{
-    color: var(--color-primary-light)
+    .date {
+      color: var(--color-primary-light);
+
+      @media (max-width: 425px) {
+        font-size: 12px;
+      }
     }
   }
 
   .amount {
     color: ${({ $isDebit }) =>
       $isDebit ? "var(--color-danger)" : "var(--color-success)"};
+
+       @media (max-width: 425px) {
+        font-size: 14px;
+      }
   }
 `;

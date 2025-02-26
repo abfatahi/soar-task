@@ -1,66 +1,4 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
-import { overviewPageContent } from "@/constants/content";
-import { maskCardNumber, formatAmount } from "@/services/helpers/string";
-
-import CardChipLight from "@assets/images/card-chip-light.png";
-import CardChipDark from "@assets/images/card-chip-dark.png";
-import MasterCardLight from "@assets/images/mastercard-light.png";
-import MasterCardDark from "@assets/images/mastercard-dark.png";
-
-const CreditCard = ({ theme, name, expiryDate, number, availableBalance }) => {
-  const isDarkTheme = theme === "dark";
-
-  return (
-    <CreditCardContainer $isDarkTheme={isDarkTheme}>
-      <div className="flexGroup balanceGroup">
-        <div>
-          <h3>{overviewPageContent.balance}</h3>
-          <p className="balance">{formatAmount(availableBalance)}</p>
-        </div>
-        <CardImage
-          isDarkTheme={isDarkTheme}
-          lightSrc={CardChipLight}
-          darkSrc={CardChipDark}
-          alt="Card chip"
-        />
-      </div>
-      <div className="detailsGroup">
-        <div>
-          <h4>{overviewPageContent.cardHolder}</h4>
-          <p>{name}</p>
-        </div>
-        <div>
-          <h4>{overviewPageContent.validThru}</h4>
-          <p>{expiryDate}</p>
-        </div>
-      </div>
-      <div className="flexGroup cardNumberGroup">
-        <p>{maskCardNumber(number)}</p>
-        <CardImage
-          isDarkTheme={isDarkTheme}
-          lightSrc={MasterCardLight}
-          darkSrc={MasterCardDark}
-          alt="Mastercard"
-        />
-      </div>
-    </CreditCardContainer>
-  );
-};
-
-CreditCard.propTypes = {
-  theme: PropTypes.oneOf(["light", "dark"]).isRequired,
-  name: PropTypes.string.isRequired,
-  expiryDate: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
-  availableBalance: PropTypes.number.isRequired,
-};
-
-export default CreditCard;
-
-const CardImage = ({ isDarkTheme, lightSrc, darkSrc, alt }) => (
-  <img src={isDarkTheme ? darkSrc : lightSrc} alt={alt} />
-);
 
 const CreditCardContainer = styled.div`
   position: relative;
@@ -74,6 +12,28 @@ const CreditCardContainer = styled.div`
     $isDarkTheme
       ? "linear-gradient(to right, var(--color-black-lighter), var(--color-black))"
       : "var(--color-white)"};
+
+  @media (max-width: 768px) {
+    width: 320px;
+  }
+
+  @media (max-width: 425px) {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 300px;
+    height: 170px;
+    padding: 16px 24px;
+  }
+
+  .chip {
+    width: 35px;
+    height: 35px;
+
+    @media (max-width: 425px) {
+      width: 29px;
+      height: 29px;
+    }
+  }
 
   .flexGroup {
     display: flex;
@@ -91,6 +51,10 @@ const CreditCardContainer = styled.div`
       font-weight: 600;
       color: ${({ $isDarkTheme }) =>
         $isDarkTheme ? "var(--color-white)" : "var(--color-primary)"};
+
+      @media (max-width: 425px) {
+        font-size: 13px;
+      }
     }
   }
 
@@ -101,6 +65,10 @@ const CreditCardContainer = styled.div`
       $isDarkTheme
         ? "var(--color-primary-lightest)"
         : "var(--color-primary-light)"};
+
+    @media (max-width: 425px) {
+      font-size: 11px;
+    }
   }
 
   h4 {
@@ -111,10 +79,18 @@ const CreditCardContainer = styled.div`
       $isDarkTheme
         ? "rgb(var(--color-white-rgb) / 70%)"
         : "var(--color-primary-light)"};
+
+    @media (max-width: 425px) {
+      font-size: 10px;
+    }
   }
 
   .balanceGroup {
     margin-bottom: 33px;
+
+    @media (max-width: 425px) {
+      margin-bottom: 22px;
+    }
 
     .balance {
       font-size: 20px;
@@ -123,6 +99,10 @@ const CreditCardContainer = styled.div`
         $isDarkTheme
           ? "var(--color-primary-lightest)"
           : "var(--color-primary)"};
+
+      @media (max-width: 425px) {
+        font-size: 16px;
+      }
     }
   }
 
@@ -141,6 +121,11 @@ const CreditCardContainer = styled.div`
         : "var(--color-white)"};
     border-radius: 0 0 25px 25px;
 
+    @media (max-width: 425px) {
+      height: 42px;
+      padding: 0 24px;
+    }
+
     p {
       font-size: 22px;
       font-weight: 600;
@@ -148,6 +133,22 @@ const CreditCardContainer = styled.div`
         $isDarkTheme
           ? "var(--color-primary-lightest)"
           : "var(--color-primary)"};
+
+      @media (max-width: 425px) {
+        font-size: 15px;
+      }
+    }
+
+    .mastercard {
+      width: 40px;
+      height: 30px;
+
+      @media (max-width: 425px) {
+        width: 27px;
+        height: 19px;
+      }
     }
   }
 `;
+
+export { CreditCardContainer };
