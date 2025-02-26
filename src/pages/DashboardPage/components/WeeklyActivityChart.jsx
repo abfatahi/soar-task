@@ -17,7 +17,7 @@ class WeeklyActivityChart extends Component {
         plotOptions: {
           bar: {
             columnWidth: "70%",
-            borderRadius: 10,
+            borderRadius: 7,
           },
         },
         xaxis: {
