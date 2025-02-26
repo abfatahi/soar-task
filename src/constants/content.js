@@ -25,6 +25,8 @@ const overviewPageContent = {
   recentTransaction: "Recent Transactions",
   weeklyActivity: "Weekly Activity",
   expensesStatistics: "Expenses Statistics",
+  balanceHistory: "Balance History",
+  quickTransfer: "Quick Transfer",
 };
 
 const settingsPageContent = {

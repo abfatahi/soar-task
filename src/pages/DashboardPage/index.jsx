@@ -1,28 +1,35 @@
 import { useEffect, useState } from "react";
 
 import { DashboardLayout } from "@components/layouts";
+import ErrorBoundary from "@/components/layouts/ErrorBoundary";
+import { Link } from "react-router-dom";
+import { CreditCard, TransactionCard } from "@/components/molecules";
+import WeeklyActivityChart from "./components/WeeklyActivityChart";
+import ExpensesStatisticsChart from "./components/ExpensesStatisticsChart";
+import BalanceHistory from "./components/BalanceHistory";
 
-// Api calls
 import { getCards } from "@/services/apis/cards";
 import { getTransactions } from "@/services/apis/transactions";
 import {
   getExpensesPercentage,
   getWeeklyActivities,
 } from "@/services/apis/statistics";
+import { getBalanceHistory } from "@/services/apis/balanceHistory";
 
-import { Link } from "react-router-dom";
-import { CreditCard, TransactionCard } from "@/components/molecules";
 import { overviewPageContent } from "@/constants/content";
-import WeeklyActivityChart from "./components/WeeklyActivityChart";
-import ExpensesStatisticsChart from "./components/ExpensesStatisticsChart";
 
-import { CreditCardsWrapper, CardWrapper, Container } from "./components/styles";
+import {
+  CreditCardsWrapper,
+  CardWrapper,
+  Container,
+} from "./components/styles";
 
 function DashboardPage() {
   const [cards, setCards] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [weeklyActivities, setWeeklyActivities] = useState({});
   const [expensesStatistics, setExpensesStatistics] = useState({});
+  const [balanceHistory, setBalanceHistory] = useState([]);
 
   useEffect(() => {
     getCards().then((res) => {
@@ -39,6 +46,10 @@ function DashboardPage() {
 
     getExpensesPercentage().then((res) => {
       setExpensesStatistics(res.data);
+    });
+
+    getBalanceHistory().then((res) => {
+      setBalanceHistory(res.data);
     });
   }, []);
 
@@ -75,29 +86,40 @@ function DashboardPage() {
             </CardWrapper>
           </div>
           <div className="sectionGroup">
-            <CardWrapper className="weeklyActivity">
-              <div className="titleGroup">
-                <h2>{overviewPageContent.weeklyActivity}</h2>
-              </div>
-              <div className="cardContainer">
-                <WeeklyActivityChart weeklyActivities={weeklyActivities} />
-              </div>
-            </CardWrapper>
-            <CardWrapper className="weeklyActivity">
-              <div className="titleGroup">
-                <h2>{overviewPageContent.expensesStatistics}</h2>
-              </div>
-              <div className="cardContainer">
-                <ExpensesStatisticsChart
-                  expensesStatistics={expensesStatistics}
-                />
-              </div>
-            </CardWrapper>
+            <ChartGroup title={overviewPageContent.weeklyActivity}>
+              <WeeklyActivityChart weeklyActivities={weeklyActivities} />
+            </ChartGroup>
+
+            <ChartGroup title={overviewPageContent.expensesStatistics}>
+              <ExpensesStatisticsChart
+                expensesStatistics={expensesStatistics}
+              />
+            </ChartGroup>
+          </div>
+          <div className="sectionGroup">
+            <ChartGroup title={overviewPageContent.balanceHistory}>
+              <BalanceHistory balanceHistory={balanceHistory} />
+            </ChartGroup>
+
+            <ChartGroup title={overviewPageContent.quickTransfer} />
           </div>
         </Container>
       }
     </DashboardLayout>
   );
 }
+
+const ChartGroup = ({ title, children }) => {
+  return (
+    <CardWrapper className="weeklyActivity">
+      <div className="titleGroup">
+        <h2>{title}</h2>
+      </div>
+      <div className="cardContainer">
+        <ErrorBoundary>{children}</ErrorBoundary>
+      </div>
+    </CardWrapper>
+  );
+};
 
 export default DashboardPage;

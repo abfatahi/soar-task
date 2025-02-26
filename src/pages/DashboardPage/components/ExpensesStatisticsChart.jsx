@@ -18,7 +18,7 @@ class ExpensesStatisticsChart extends Component {
           show: false,
         },
         stroke: {
-          width: 5,
+          width: 2,
           colors: ["#fff"],
         },
         plotOptions: {
