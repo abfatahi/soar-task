@@ -1,15 +1,86 @@
-import styled from "styled-components";
-import { settingsPageContent } from "@/constants/content";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { userSelector } from "@/redux/reducers/user";
 
-import { InputField } from "@components/molecules";
+import { settingsPageContent } from "@/constants/content";
+import { handleUpdateUserData } from "@/redux/reducers/user";
+import { validateEmail, validatePassword } from "@/services/helpers/string";
+
 import { Button } from "@components/atoms";
+import LoadingSpinner from "@components/atoms/Spinner";
+import InputGroup from "@components/molecules/InputGroup";
 
 import ProfilePictureImage from "@assets/images/profile.png";
 import EditIcon from "@assets/icons/edit.svg";
 
-const EditProfileTab = ({ userDetails }) => {
+import { EditProfileTabContainer, ProfilePictureCard } from "./styles";
+
+const EditProfileTab = () => {
+  const dispatch = useDispatch();
+  const { profile } = useSelector(userSelector);
+
+  const [userData, setUserData] = useState({
+    name: profile.name || "",
+    email: profile.email || "",
+    userName: profile.userName || "",
+    password: profile.password || "",
+    dateOfBirth: profile.dateOfBirth || "",
+    presentAddress: profile.presentAddress || "",
+    permanentAddress: profile.permanentAddress || "",
+    city: profile.city || "",
+    postalCode: profile.postalCode || "",
+    country: profile.country || "",
+  });
+
+  useEffect(() => {
+    if (profile && Object.keys(profile).length > 0) {
+      setUserData(profile);
+    }
+  }, [profile]);
+
+  const [isSaved, setIsSaved] = useState(false);
+
+  const hasFormChanged = () => {
+    return Object.keys(userData).some((key) => userData[key] !== profile[key]);
+  };
+
+  const isFormComplete = () => {
+    return Object.values(userData).every((value) => value.trim() !== "");
+  };
+
+  const isFormValid = () => {
+    return (
+      validateEmail(userData.email) &&
+      validatePassword(userData.password) &&
+      hasFormChanged() && 
+      isFormComplete() 
+    );
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData((prev) => ({ ...prev, [name]: value }));
+    setIsSaved(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!isFormValid()) {
+      alert(settingsPageContent.formValidationMessage);
+      return;
+    }
+
+    dispatch(handleUpdateUserData(userData));
+    setIsSaved(true);
+  };
+
+  if (Object.keys(profile).length === 0) {
+    return <LoadingSpinner />;
+  }
+
   return (
-    <EditProfileTabContainer>
+    <EditProfileTabContainer onSubmit={handleSubmit}>
       <ProfilePictureCard>
         <img
           src={ProfilePictureImage}
@@ -21,102 +92,50 @@ const EditProfileTab = ({ userDetails }) => {
 
       <div className="formWrapper">
         <div className="inputGroupWrapper">
-          <div className="inputGroup">
-            <p>{settingsPageContent.yourName}</p>
-            <InputField type="text" value={userDetails.name} />
-          </div>
-          <div className="inputGroup">
-            <p>{settingsPageContent.userName}</p>
-            <InputField type="text" value={userDetails.userName} />
-          </div>
-          <div className="inputGroup">
-            <p>{settingsPageContent.email}</p>
-            <InputField type="email" value={userDetails.email} />
-          </div>
-          <div className="inputGroup">
-            <p>{settingsPageContent.password}</p>
-            <InputField type="password" value={userDetails.password} />
-          </div>
-          <div className="inputGroup">
-            <p>{settingsPageContent.dateOfBirth}</p>
-            <InputField type="text" value={userDetails.dateOfBirth} />
-          </div>
-          <div className="inputGroup">
-            <p>{settingsPageContent.presentAddress}</p>
-            <InputField type="text" value={userDetails.presentAddress} />
-          </div>
-          <div className="inputGroup">
-            <p>{settingsPageContent.permanentAddress}</p>
-            <InputField type="text" value={userDetails.permanentAddress} />
-          </div>
-          <div className="inputGroup">
-            <p>{settingsPageContent.city}</p>
-            <InputField type="text" value={userDetails.city} />
-          </div>
-          <div className="inputGroup">
-            <p>{settingsPageContent.postalCode}</p>
-            <InputField type="text" value={userDetails.postalCode} />
-          </div>
-          <div className="inputGroup">
-            <p>{settingsPageContent.country}</p>
-            <InputField type="text" value={userDetails.country} />
-          </div>
+          {formFields.map((field) => (
+            <InputGroup
+              key={field.name}
+              type={field.type}
+              label={field.label}
+              name={field.name}
+              value={userData[field.name]}
+              onChange={handleChange}
+            />
+          ))}
         </div>
-        <Button className="saveButton" variant="secondary" size="large">
-          {settingsPageContent.save}
+        <Button
+          className="saveButton"
+          variant="secondary"
+          size="large"
+          type="submit"
+          disabled={!isFormValid()}
+        >
+          {isSaved ? settingsPageContent.saved : settingsPageContent.save}
         </Button>
       </div>
     </EditProfileTabContainer>
   );
 };
 
+const formFields = [
+  { label: settingsPageContent.yourName, name: "name", type: "text" },
+  { label: settingsPageContent.userName, name: "userName", type: "text" },
+  { label: settingsPageContent.email, name: "email", type: "email" },
+  { label: settingsPageContent.password, name: "password", type: "password" },
+  { label: settingsPageContent.dateOfBirth, name: "dateOfBirth", type: "text" },
+  {
+    label: settingsPageContent.presentAddress,
+    name: "presentAddress",
+    type: "text",
+  },
+  {
+    label: settingsPageContent.permanentAddress,
+    name: "permanentAddress",
+    type: "text",
+  },
+  { label: settingsPageContent.city, name: "city", type: "text" },
+  { label: settingsPageContent.postalCode, name: "postalCode", type: "text" },
+  { label: settingsPageContent.country, name: "country", type: "text" },
+];
+
 export default EditProfileTab;
-
-const EditProfileTabContainer = styled.form`
-  display: flex;
-  gap: 60px;
-
-  .formWrapper {
-    width: 100%;
-
-    .inputGroupWrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      row-gap: 20px;
-      column-gap: 30px;
-    }
-  }
-
-  .inputGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 11px;
-
-    p {
-      font-weight: 400;
-      color: var(--color-primary);
-    }
-  }
-
-  .saveButton {
-    margin-top: 2rem;
-    float: right;
-  }
-`;
-
-const ProfilePictureCard = styled.div`
-  position: relative;
-  height: 90px;
-
-  .profilePicture {
-    width: 90px;
-    height: 100%;
-    border-radius: 50%;
-  }
-
-  .editIcon {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  }
-`;

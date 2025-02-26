@@ -40,9 +40,12 @@ const settingsPageContent = {
   postalCode: "Postal Code",
   country: "Country",
   save: "Save",
+  saved: "Saved",
   preferenceTabContent: "Preference tab content coming soon...",
   securityTabContent: "Security tab content coming soon...",
-
+  invalidEmailFormat: "Invalid email format.",
+  invalidPasswordFormat: "Password must be at least 6 characters.",
+  formValidationMessage: "Please ensure all fields are valid and there are changes to save."
 };
 
 export { layoutContent, overviewPageContent, settingsPageContent };

@@ -73,8 +73,9 @@ const StyledInput = styled.input`
   background: transparent;
   color: var(--color-primary);
 
-  &:focus {
+  &:focus{
     border-color: var(--color-info);
+    background: transparent;
   }
 
   &::placeholder {

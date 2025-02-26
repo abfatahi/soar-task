@@ -13,4 +13,13 @@ const formatAmount = (number) => {
   return formatter.format(number) ?? 0;
 };
 
-export { maskCardNumber, formatAmount };
+const validateEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
+const validatePassword = (password) => {
+  return password.length >= 6;
+};
+
+export { maskCardNumber, formatAmount, validateEmail, validatePassword };

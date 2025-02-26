@@ -10,8 +10,8 @@ const Tabs = ({ tabs }) => {
         {tabs.map((tab, index) => (
           <TabButton
             key={index}
-            active={activeTab === index}
             onClick={() => setActiveTab(index)}
+            className={activeTab === index ? "active" : ""}
           >
             <h2>{tab.label}</h2>
           </TabButton>
@@ -32,6 +32,14 @@ const TabsContainer = styled.div`
   background: var(--color-white);
   padding: 1.5rem;
   border-radius: 25px;
+
+  .active {
+    border-bottom: 3px solid var(--color-primary);
+
+    h2 {
+      color: var(--color-primary);
+    }
+  }
 `;
 
 const TabList = styled.div`
@@ -55,17 +63,6 @@ const TabButton = styled.button`
     font-size: 16px;
     font-weight: 500;
   }
-
-  ${({ active }) =>
-    active &&
-    `
-    border-bottom: 3px solid var(--color-primary);
-
-    h2{
-      color:var(--color-primary);
-    }
-    
-  `}
 
   &:hover {
     opacity: 0.8;
