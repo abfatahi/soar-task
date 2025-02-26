@@ -1,18 +1,13 @@
 import { Component } from "react";
 import Chart from "react-apexcharts";
 import COLOR from "@/constants/colors";
+import { transformBalanceHistoryData } from "@/services/helpers/transformers";
 
 export class BalanceHistory extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      series: [
-        {
-          name: "Balance",
-          data: [100, 280, 470, 780, 220, 580, 240], 
-        },
-      ],
       options: {
         chart: {
           id: "balance-history-chart",
@@ -21,7 +16,7 @@ export class BalanceHistory extends Component {
           zoom: { enabled: false },
         },
         stroke: {
-          curve: "smooth", 
+          curve: "smooth",
           width: 3,
         },
         dataLabels: {
@@ -41,7 +36,16 @@ export class BalanceHistory extends Component {
           },
         },
         xaxis: {
-          categories: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan"],
+          labels: {
+            formatter: (value) => {
+              // Show only the month for the first day of each month
+              const date = new Date(value);
+              if (date.getDate() === 1) {
+                return date.toLocaleString("default", { month: "short" }); // e.g., "Jul", "Aug"
+              }
+              return ""; // Hide labels for other days
+            },
+          },
         },
         grid: {
           strokeDashArray: 4,
@@ -51,11 +55,24 @@ export class BalanceHistory extends Component {
   }
 
   render() {
+    const { balanceHistory } = this.props;
+    const { categories, data } = transformBalanceHistoryData(balanceHistory);
+
+    const series = [
+      {
+        name: "Balance",
+        data: data,
+      },
+    ];
+
     return (
       <Chart
         type="area"
-        series={this.state.series}
-        options={this.state.options}
+        series={series}
+        options={{
+          ...this.state.options,
+          xaxis: { ...this.state.options.xaxis, categories },
+        }}
         width="100%"
         height="322"
       />

@@ -9,6 +9,7 @@ import {
   getExpensesPercentage,
   getWeeklyActivities,
 } from "@/services/apis/statistics";
+import { getBalanceHistory } from "@/services/apis/balanceHistory";
 
 import { Link } from "react-router-dom";
 import { CreditCard, TransactionCard } from "@/components/molecules";
@@ -16,14 +17,20 @@ import { overviewPageContent } from "@/constants/content";
 import WeeklyActivityChart from "./components/WeeklyActivityChart";
 import ExpensesStatisticsChart from "./components/ExpensesStatisticsChart";
 
-import { CreditCardsWrapper, CardWrapper, Container } from "./components/styles";
+import {
+  CreditCardsWrapper,
+  CardWrapper,
+  Container,
+} from "./components/styles";
 import BalanceHistory from "./components/BalanceHistory";
+import ErrorBoundary from "../../components/layouts/ErrorBoundary";
 
 function DashboardPage() {
   const [cards, setCards] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [weeklyActivities, setWeeklyActivities] = useState({});
   const [expensesStatistics, setExpensesStatistics] = useState({});
+  const [balanceHistory, setBalanceHistory] = useState([]);
 
   useEffect(() => {
     getCards().then((res) => {
@@ -40,6 +47,10 @@ function DashboardPage() {
 
     getExpensesPercentage().then((res) => {
       setExpensesStatistics(res.data);
+    });
+
+    getBalanceHistory().then((res) => {
+      setBalanceHistory(res.data);
     });
   }, []);
 
@@ -81,7 +92,9 @@ function DashboardPage() {
                 <h2>{overviewPageContent.weeklyActivity}</h2>
               </div>
               <div className="cardContainer">
-                <WeeklyActivityChart weeklyActivities={weeklyActivities} />
+                <ErrorBoundary>
+                  <WeeklyActivityChart weeklyActivities={weeklyActivities} />
+                </ErrorBoundary>
               </div>
             </CardWrapper>
             <CardWrapper className="weeklyActivity">
@@ -89,9 +102,11 @@ function DashboardPage() {
                 <h2>{overviewPageContent.expensesStatistics}</h2>
               </div>
               <div className="cardContainer">
-                <ExpensesStatisticsChart
-                  expensesStatistics={expensesStatistics}
-                />
+                <ErrorBoundary>
+                  <ExpensesStatisticsChart
+                    expensesStatistics={expensesStatistics}
+                  />
+                </ErrorBoundary>
               </div>
             </CardWrapper>
           </div>
@@ -101,15 +116,16 @@ function DashboardPage() {
                 <h2>{overviewPageContent.balanceHistory}</h2>
               </div>
               <div className="cardContainer">
-                <BalanceHistory/>
+                <ErrorBoundary>
+                  <BalanceHistory balanceHistory={balanceHistory} />
+                </ErrorBoundary>
               </div>
             </CardWrapper>
             <CardWrapper className="weeklyActivity">
               <div className="titleGroup">
                 <h2>{overviewPageContent.quickTransfer}</h2>
               </div>
-              <div className="cardContainer">
-              </div>
+              <div className="cardContainer"></div>
             </CardWrapper>
           </div>
         </Container>
