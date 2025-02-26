@@ -11,10 +11,10 @@ import { overviewPageContent } from "../../constants/content";
 import { Link } from "react-router-dom";
 
 import {
-  CardSectionWrapper,
+  CreditCardsWrapper,
+  CardWrapper,
   Container,
-  TransactionSectionWrapper,
-} from "./styles";
+} from "./components/styles";
 import WeeklyActivityChart from "./components/WeeklyActivityChart";
 import { getWeeklyActivities } from "../../services/apis/statistics";
 
@@ -42,7 +42,7 @@ function DashboardPage() {
       {
         <Container>
           <div className="sectionGroup">
-            <CardSectionWrapper>
+            <CreditCardsWrapper>
               <div className="titleGroup">
                 <h2>{overviewPageContent.myCards}</h2>
                 <Link>{overviewPageContent.seeAll}</Link>
@@ -52,8 +52,8 @@ function DashboardPage() {
                   <CreditCard key={`card-${index}`} {...card} />
                 ))}
               </div>
-            </CardSectionWrapper>
-            <TransactionSectionWrapper>
+            </CreditCardsWrapper>
+            <CardWrapper>
               <div className="titleGroup">
                 <h2>{overviewPageContent.recentTransaction}</h2>
               </div>
@@ -65,10 +65,17 @@ function DashboardPage() {
                   />
                 ))}
               </div>
-            </TransactionSectionWrapper>
+            </CardWrapper>
           </div>
           <div className="sectionGroup">
-            <WeeklyActivityChart weeklyActivities={weeklyActivities} />
+            <div className="weeklyActivity">
+              <div className="titleGroup">
+                <h2>{overviewPageContent.weeklyActivity}</h2>
+              </div>
+              <CardWrapper>
+                <WeeklyActivityChart weeklyActivities={weeklyActivities} />
+              </CardWrapper>
+            </div>
           </div>
         </Container>
       }

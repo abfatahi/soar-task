@@ -23,6 +23,7 @@ const overviewPageContent = {
   myCards: "My Cards",
   seeAll: "See All",
   recentTransaction: "Recent Transactions",
+  weeklyActivity: "Weekly Activity"
 };
 
 const settingsPageContent = {

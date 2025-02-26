@@ -19,7 +19,7 @@ const Container = styled.div`
   }
 `;
 
-const CardSectionWrapper = styled.section`
+const CreditCardsWrapper = styled.section`
   @media (max-width: 768px) {
     overflow-x: scroll !important;
   }
@@ -65,13 +65,14 @@ const CardSectionWrapper = styled.section`
   }
 `;
 
-const TransactionSectionWrapper = styled.section`
+const CardWrapper = styled.section`
+  background: var(--color-white);
+  border-radius: 25px;
+  padding: 24px;
+
   .transactionsGroup {
-    background: var(--color-white);
-    border-radius: 25px;
-    padding: 24px;
     height: 235px;
   }
 `;
 
-export { Container, CardSectionWrapper, TransactionSectionWrapper };
+export { Container, CreditCardsWrapper, CardWrapper };

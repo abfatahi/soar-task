@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
 
-const COLOR_BLACK = "#232323";
+const COLOR_BLACK = "#000000";
 const COLOR_BLUE = "#396AFF";
 
 class WeeklyActivityChart extends Component {
@@ -19,18 +19,18 @@ class WeeklyActivityChart extends Component {
         plotOptions: {
           bar: {
             columnWidth: "70%",
-            borderRadius: 5,
+            borderRadius: 10,
           },
         },
         stroke: {
           width: [0, 0],
         },
         xaxis: {
-          categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          categories: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
         },
         stroke: {
           show: true,
-          width: 5,
+          width: 10,
           colors: ["transparent"],
         },
         fill: {
@@ -65,7 +65,8 @@ class WeeklyActivityChart extends Component {
         options={this.state.options}
         series={series}
         type="line"
-        width="500"
+        width="100%"
+        height="322"
       />
     );
   }
