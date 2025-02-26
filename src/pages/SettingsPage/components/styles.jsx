@@ -4,6 +4,16 @@ const EditProfileTabContainer = styled.form`
   display: flex;
   gap: 60px;
 
+  @media (max-width: 768px) {
+    gap: 30px;
+  }
+
+  @media (max-width: 768px) {
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+  }
+
   .formWrapper {
     width: 100%;
 
@@ -12,6 +22,10 @@ const EditProfileTabContainer = styled.form`
       grid-template-columns: 1fr 1fr;
       row-gap: 20px;
       column-gap: 30px;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
     }
   }
 
@@ -27,14 +41,23 @@ const EditProfileTabContainer = styled.form`
   }
 
   .saveButton {
+    width: 190px;
     margin-top: 2rem;
     float: right;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 `;
 
 const ProfilePictureCard = styled.div`
   position: relative;
   height: 90px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 
   .profilePicture {
     width: 90px;

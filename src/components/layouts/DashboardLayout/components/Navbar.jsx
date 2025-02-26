@@ -25,6 +25,7 @@ const Navbar = () => {
       <h1>{title}</h1>
       <div className="nav_group">
         <InputField
+          className="search_input"
           skin="flat"
           type="search"
           placeholder={layoutContent.searchPlaceholder}
@@ -75,6 +76,12 @@ const NavbarContainer = styled.nav`
     width: 100%;
   }
 
+  @media (max-width: 768px) {
+    .search_input {
+      display: none;
+    }
+  }
+
   .nav_group {
     display: flex;
     align-items: center;
@@ -96,6 +103,10 @@ const NavbarContainer = styled.nav`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 425px) {
+      display: none;
+    }
   }
 
   h1 {

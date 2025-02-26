@@ -59,9 +59,14 @@ const TabButton = styled.button`
   border-bottom: 3px solid var(--color-white);
 
   h2 {
+    font-family: Inter, sans-serif;
     color: var(--color-primary-light);
     font-size: 16px;
     font-weight: 500;
+
+    @media (max-width: 425px) {
+      font-size: 13px;
+    }
   }
 
   &:hover {
@@ -72,4 +77,8 @@ const TabButton = styled.button`
 const TabContent = styled.div`
   padding: 2rem 0 1rem 2rem;
   border-top: none;
+
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+  }
 `;
