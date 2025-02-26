@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
 import COLOR from "@/constants/colors";
+
 class WeeklyActivityChart extends Component {
   constructor(props) {
     super(props);
