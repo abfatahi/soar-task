@@ -87,51 +87,40 @@ function DashboardPage() {
             </CardWrapper>
           </div>
           <div className="sectionGroup">
-            <CardWrapper className="weeklyActivity">
-              <div className="titleGroup">
-                <h2>{overviewPageContent.weeklyActivity}</h2>
-              </div>
-              <div className="cardContainer">
-                <ErrorBoundary>
-                  <WeeklyActivityChart weeklyActivities={weeklyActivities} />
-                </ErrorBoundary>
-              </div>
-            </CardWrapper>
-            <CardWrapper className="weeklyActivity">
-              <div className="titleGroup">
-                <h2>{overviewPageContent.expensesStatistics}</h2>
-              </div>
-              <div className="cardContainer">
-                <ErrorBoundary>
-                  <ExpensesStatisticsChart
-                    expensesStatistics={expensesStatistics}
-                  />
-                </ErrorBoundary>
-              </div>
-            </CardWrapper>
+            <ChartGroup title={overviewPageContent.weeklyActivity}>
+              <WeeklyActivityChart weeklyActivities={weeklyActivities} />
+            </ChartGroup>
+
+            <ChartGroup title={overviewPageContent.expensesStatistics}>
+              <ExpensesStatisticsChart
+                expensesStatistics={expensesStatistics}
+              />
+            </ChartGroup>
           </div>
           <div className="sectionGroup">
-            <CardWrapper className="weeklyActivity">
-              <div className="titleGroup">
-                <h2>{overviewPageContent.balanceHistory}</h2>
-              </div>
-              <div className="cardContainer">
-                <ErrorBoundary>
-                  <BalanceHistory balanceHistory={balanceHistory} />
-                </ErrorBoundary>
-              </div>
-            </CardWrapper>
-            <CardWrapper className="weeklyActivity">
-              <div className="titleGroup">
-                <h2>{overviewPageContent.quickTransfer}</h2>
-              </div>
-              <div className="cardContainer"></div>
-            </CardWrapper>
+            <ChartGroup title={overviewPageContent.balanceHistory}>
+              <BalanceHistory balanceHistory={balanceHistory} />
+            </ChartGroup>
+
+            <ChartGroup title={overviewPageContent.quickTransfer} />
           </div>
         </Container>
       }
     </DashboardLayout>
   );
 }
+
+const ChartGroup = ({ title, children }) => {
+  return (
+    <CardWrapper className="weeklyActivity">
+      <div className="titleGroup">
+        <h2>{title}</h2>
+      </div>
+      <div className="cardContainer">
+        <ErrorBoundary>{children}</ErrorBoundary>
+      </div>
+    </CardWrapper>
+  );
+};
 
 export default DashboardPage;
