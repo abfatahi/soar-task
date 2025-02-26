@@ -1,7 +1,7 @@
 const layoutContent = {
   loading: "Loading...",
   // Sidebar
-  appName: "Soar Task",
+  appName: "StarPay", // TODO: change app name
   dashboard: "Dashboard",
   transactions: "Transactions",
   accounts: "Accounts",
@@ -23,6 +23,7 @@ const overviewPageContent = {
   myCards: "My Cards",
   seeAll: "See All",
   recentTransaction: "Recent Transactions",
+  weeklyActivity: "Weekly Activity"
 };
 
 const settingsPageContent = {
