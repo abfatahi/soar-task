@@ -1,7 +1,6 @@
 {
   "name": "soar-task",
   "private": true,
-  "homepage": "/",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
