@@ -74,7 +74,7 @@ export class BalanceHistory extends Component {
           xaxis: { ...this.state.options.xaxis, categories },
         }}
         width="100%"
-        height="276"
+        height="230"
       />
     );
   }

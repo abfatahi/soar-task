@@ -16,15 +16,18 @@ class WeeklyActivityChart extends Component {
         },
         plotOptions: {
           bar: {
-            columnWidth: "30%",
-            borderRadius: 5,
+            columnWidth: "50%",
+            borderRadius: 7,
           },
         },
         xaxis: {
           categories: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+          distributed: true,
         },
         stroke: {
-          show: false,
+          show: true,
+          width: 5,
+          colors: ["transparent"]
         },
         fill: {
           colors: [COLOR.BLACK, COLOR.BLUE],

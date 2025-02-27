@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import { DashboardLayout } from "@components/layouts";
 import ErrorBoundary from "@/components/layouts/ErrorBoundary";
@@ -7,7 +8,9 @@ import { CreditCard, TransactionCard } from "@/components/molecules";
 import WeeklyActivityChart from "./components/WeeklyActivityChart";
 import ExpensesStatisticsChart from "./components/ExpensesStatisticsChart";
 import BalanceHistory from "./components/BalanceHistory";
+import QuickTransfer from "./components/QuickTransfer";
 
+import { transactionSelector } from "@/redux/reducers/transactions";
 import { getCards } from "@/services/apis/cards";
 import { getBeneficiaries } from "@/services/apis/transactions";
 import {
@@ -23,9 +26,6 @@ import {
   CardWrapper,
   Container,
 } from "./components/styles";
-import QuickTransfer from "./components/QuickTransfer";
-import { useSelector } from "react-redux";
-import { transactionSelector } from "../../redux/reducers/transactions";
 
 function DashboardPage() {
   const [cards, setCards] = useState([]);
@@ -87,22 +87,34 @@ function DashboardPage() {
             </CardWrapper>
           </div>
           <div className="sectionGroup">
-            <ChartGroup title={overviewPageContent.weeklyActivity}>
+            <ChartGroup
+              className="chartSectionGroup1"
+              title={overviewPageContent.weeklyActivity}
+            >
               <WeeklyActivityChart weeklyActivities={weeklyActivities} />
             </ChartGroup>
 
-            <ChartGroup title={overviewPageContent.expensesStatistics}>
+            <ChartGroup
+              className="chartSectionGroup1"
+              title={overviewPageContent.expensesStatistics}
+            >
               <ExpensesStatisticsChart
                 expensesStatistics={expensesStatistics}
               />
             </ChartGroup>
           </div>
           <div className="sectionGroupReverse">
-            <ChartGroup title={overviewPageContent.quickTransfer}>
+            <ChartGroup
+              className="chartSectionGroup2"
+              title={overviewPageContent.quickTransfer}
+            >
               <QuickTransfer beneficiaries={beneficiaries} />
             </ChartGroup>
 
-            <ChartGroup title={overviewPageContent.balanceHistory}>
+            <ChartGroup
+              className="chartSectionGroup2"
+              title={overviewPageContent.balanceHistory}
+            >
               <BalanceHistory balanceHistory={balanceHistory} />
             </ChartGroup>
           </div>
@@ -112,13 +124,13 @@ function DashboardPage() {
   );
 }
 
-const ChartGroup = ({ title, children }) => {
+const ChartGroup = ({ title, children, className }) => {
   return (
     <CardWrapper className="weeklyActivity">
       <div className="titleGroup">
         <h2>{title}</h2>
       </div>
-      <div className="cardContainer">
+      <div className={`cardContainer ${className}`}>
         <ErrorBoundary>{children}</ErrorBoundary>
       </div>
     </CardWrapper>
