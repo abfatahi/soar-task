@@ -12,7 +12,7 @@ const NavbarContainer = styled.nav`
   width: calc(100vw - 250px);
   background-color: var(--color-white);
   border-bottom: 1px solid var(--color-primary-lighter);
-  z-index: var(--z-index-highest);
+  z-index: var(--z-index-medium);
   padding: 0 40px;
 
   .navGroup {

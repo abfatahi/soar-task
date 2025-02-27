@@ -1,20 +1,29 @@
 import styled from "styled-components";
 
-import Logo from "@components/atoms/Logo";
 import { AsideNavLink } from "@components/atoms";
 import ErrorBoundary from "@/components/layouts/ErrorBoundary";
 
 import { sidebarLinks } from "@/constants/routes";
+import { layoutContent } from "@/constants/content";
 
 import { useSelector } from "react-redux";
 import { userSelector } from "@/redux/reducers/user";
 
-const Sidebar = () => {
+import LogoImage from "@assets/icons/logo.svg?react";
+import CancelIcon from "@assets/icons/cancel.svg?react";
+
+const BurgerMenu = () => {
   const { activeTab } = useSelector(userSelector);
   return (
-    <SidebarContainer>
+    <BurgerMenuContainer>
       <ErrorBoundary>
-        <Logo />
+        <div className="titleGroup">
+          <div className="title">
+            <LogoImage />
+            <p>{layoutContent.appName}</p>
+          </div>
+          <CancelIcon />
+        </div>
         {sidebarLinks.map((tab) => {
           const { key, ...rest } = tab;
           return (
@@ -26,21 +35,18 @@ const Sidebar = () => {
           );
         })}
       </ErrorBoundary>
-    </SidebarContainer>
+    </BurgerMenuContainer>
   );
 };
 
-export default Sidebar;
+export default BurgerMenu;
 
-const SidebarContainer = styled.aside`
-  position: fixed;
-  left: 0;
-  top: 0;
+const BurgerMenuContainer = styled.aside`
+  display: none;
   height: 100vh;
-  width: 250px;
+  width: 100%;
   background-color: var(--color-white);
-  border-right: 1px solid var(--color-primary-lighter);
-  z-index: (--z-index-low);
+  z-index: (--z-index-highest);
 
   .active {
     border-left: 6px solid var(--color-black);
@@ -51,6 +57,24 @@ const SidebarContainer = styled.aside`
   }
 
   @media (max-width: 425px) {
-    display: none;
+    display: block;
+  }
+
+  .titleGroup {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      p {
+        font-size: 25px;
+        font-weight: 800;
+      }
+    }
   }
 `;
