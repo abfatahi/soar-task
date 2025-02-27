@@ -8,9 +8,20 @@ import { layoutContent } from "@/constants/content";
 
 import styled from "styled-components";
 
-const AsideNavLink = ({ icon, iconActive, text, isActive, link }) => {
+import DashboardIcon from "@assets/icons/dashboard.svg?react";
+import DashboardActiveIcon from "@assets/icons/dashboard-active.svg?react";
+import TransactionsIcon from "@assets/icons/transactions.svg?react";
+import AccountsIcon from "@assets/icons/accounts.svg?react";
+import InvestmentsIcon from "@assets/icons/investments.svg?react";
+import CreditCardsIcon from "@assets/icons/credit-cards.svg?react";
+import LoansIcon from "@assets/icons/loans.svg?react";
+import ServicesIcon from "@assets/icons/services.svg?react";
+import PriviledgesIcon from "@assets/icons/priviledges.svg?react";
+import SettingsIcon from "@assets/icons/settings.svg?react";
+import SettingsActiveIcon from "@assets/icons/settings-active.svg?react";
+
+const AsideNavLink = ({  text, isActive, link }) => {
   const dispatch = useDispatch();
-  const linkIcon = isActive ? iconActive : icon;
 
   const handleSidebarTabChange = useCallback(() => {
     const validPages = ["Dashboard", "Settings"];
@@ -21,13 +32,25 @@ const AsideNavLink = ({ icon, iconActive, text, isActive, link }) => {
     dispatch(handleTabChange(currentTab));
   }, [dispatch, text]);
 
+  const linkIconMap = {
+    Dashboard: isActive ? <DashboardActiveIcon /> : <DashboardIcon />,
+    Settings: isActive ? <SettingsActiveIcon /> : <SettingsIcon />,
+    Transactions: <TransactionsIcon />,
+    Accounts: <AccountsIcon />,
+    Investments: <InvestmentsIcon />,
+    "Credit Cards": <CreditCardsIcon />,
+    Loans: <LoansIcon />,
+    Services: <ServicesIcon />,
+    "My Priviledges": <PriviledgesIcon />,
+  };
+
   return (
     <AsideNavLinkContainer
       onClick={handleSidebarTabChange}
       to={link}
       className={isActive ? "active" : ""}
     >
-      <img src={linkIcon} alt={text} />
+      {linkIconMap[text]}
       <p>{text}</p>
     </AsideNavLinkContainer>
   );

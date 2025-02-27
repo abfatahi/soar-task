@@ -4,7 +4,7 @@ const Button = ({ children, size, variant, disabled, onClick, ...props }) => {
   return (
     <BaseButton
       size={size}
-      variant={variant}
+      $variant={variant}
       disabled={disabled}
       onClick={onClick}
       {...props}
@@ -36,23 +36,23 @@ const BaseButton = styled.button`
   gap: 8px;
   width: 100%;
 
-  background-color: ${({ variant }) =>
-    variant === "secondary"
+  background-color: ${({ $variant }) =>
+    $variant === "secondary"
       ? "var(--color-black-light)"
-      : variant === "outline"
+      : $variant === "outline"
       ? "transparent"
       : "var(--color-info)"};
-  color: ${({ variant }) =>
-    variant === "outline" ? "var(--color-info)" : "var(--color-white)"};
-  border: ${({ variant }) =>
-    variant === "outline" ? "1px solid var(--color-info)" : "none"};
+  color: ${({ $variant }) =>
+    $variant === "outline" ? "var(--color-info)" : "var(--color-white)"};
+  border: ${({ $variant }) =>
+    $variant === "outline" ? "1px solid var(--color-info)" : "none"};
   border-radius: 15px;
 
   &:hover {
-    background-color: ${({ variant }) =>
-      variant === "secondary"
+    background-color: ${({ $variant }) =>
+      $variant === "secondary"
         ? "#5a6268"
-        : variant === "outline"
+        : $variant === "outline"
         ? "var(--color-info)"
         : "#0056b3"};
   }

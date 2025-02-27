@@ -27,6 +27,9 @@ const overviewPageContent = {
   expensesStatistics: "Expenses Statistics",
   balanceHistory: "Balance History",
   quickTransfer: "Quick Transfer",
+  enterAmount: "Enter Amount",
+  writeAmount: "Write Amount",
+  send: "Send",
 };
 
 const settingsPageContent = {

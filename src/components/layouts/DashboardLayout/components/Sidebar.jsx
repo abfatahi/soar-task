@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import Logo from "@components/atoms/Logo";
 import { AsideNavLink } from "@components/atoms";
+import ErrorBoundary from "@/components/layouts/ErrorBoundary";
 
 import { sidebarLinks } from "@/constants/routes";
 
@@ -13,17 +14,19 @@ const Sidebar = () => {
   const { activeTab } = useSelector(userSelector);
   return (
     <SidebarContainer>
+      <ErrorBoundary>
       <Logo />
       {sidebarLinks.map((tab) => {
         const { key, ...rest } = tab;
         return (
           <AsideNavLink
-            key={tab.key}
-            {...rest}
-            isActive={activeTab === tab.text}
+          key={tab.key}
+          {...rest}
+          isActive={activeTab === tab.text}
           />
         );
       })}
+      </ErrorBoundary>
     </SidebarContainer>
   );
 };

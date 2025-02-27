@@ -9,7 +9,7 @@ import ExpensesStatisticsChart from "./components/ExpensesStatisticsChart";
 import BalanceHistory from "./components/BalanceHistory";
 
 import { getCards } from "@/services/apis/cards";
-import { getTransactions } from "@/services/apis/transactions";
+import { getBeneficiaries } from "@/services/apis/transactions";
 import {
   getExpensesPercentage,
   getWeeklyActivities,
@@ -23,21 +23,21 @@ import {
   CardWrapper,
   Container,
 } from "./components/styles";
+import QuickTransfer from "./components/QuickTransfer";
+import { useSelector } from "react-redux";
+import { transactionSelector } from "../../redux/reducers/transactions";
 
 function DashboardPage() {
   const [cards, setCards] = useState([]);
-  const [transactions, setTransactions] = useState([]);
   const [weeklyActivities, setWeeklyActivities] = useState({});
   const [expensesStatistics, setExpensesStatistics] = useState({});
   const [balanceHistory, setBalanceHistory] = useState([]);
+  const [beneficiaries, setBeneficiaries] = useState([]);
 
+  const { transfers } = useSelector(transactionSelector);
   useEffect(() => {
     getCards().then((res) => {
       setCards(res.data);
-    });
-
-    getTransactions().then((res) => {
-      setTransactions(res.data);
     });
 
     getWeeklyActivities().then((res) => {
@@ -50,6 +50,10 @@ function DashboardPage() {
 
     getBalanceHistory().then((res) => {
       setBalanceHistory(res.data);
+    });
+
+    getBeneficiaries().then((res) => {
+      setBeneficiaries(res.data);
     });
   }, []);
 
@@ -76,11 +80,8 @@ function DashboardPage() {
                 </h2>
               </div>
               <div className="cardContainer transactionsGroup">
-                {transactions?.slice(0, 3).map((transaction, index) => (
-                  <TransactionCard
-                    key={`transaction-${index}`}
-                    {...transaction}
-                  />
+                {transfers?.slice(0, 3).map((transfer, index) => (
+                  <TransactionCard key={`transaction-${index}`} {...transfer} />
                 ))}
               </div>
             </CardWrapper>
@@ -96,12 +97,14 @@ function DashboardPage() {
               />
             </ChartGroup>
           </div>
-          <div className="sectionGroup">
+          <div className="sectionGroupReverse">
+            <ChartGroup title={overviewPageContent.quickTransfer}>
+              <QuickTransfer beneficiaries={beneficiaries} />
+            </ChartGroup>
+
             <ChartGroup title={overviewPageContent.balanceHistory}>
               <BalanceHistory balanceHistory={balanceHistory} />
             </ChartGroup>
-
-            <ChartGroup title={overviewPageContent.quickTransfer} />
           </div>
         </Container>
       }

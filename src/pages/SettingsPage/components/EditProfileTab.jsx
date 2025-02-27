@@ -11,7 +11,7 @@ import LoadingSpinner from "@components/atoms/Spinner";
 import InputGroup from "@components/molecules/InputGroup";
 
 import ProfilePictureImage from "@assets/images/profile.png";
-import EditIcon from "@assets/icons/edit.svg";
+import EditIcon from "@assets/icons/edit.svg?react";
 
 import { EditProfileTabContainer, ProfilePictureCard } from "./styles";
 
@@ -52,8 +52,8 @@ const EditProfileTab = () => {
     return (
       validateEmail(userData.email) &&
       validatePassword(userData.password) &&
-      hasFormChanged() && 
-      isFormComplete() 
+      hasFormChanged() &&
+      isFormComplete()
     );
   };
 
@@ -87,7 +87,7 @@ const EditProfileTab = () => {
           alt="profile picture"
           className="profilePicture"
         />
-        <img src={EditIcon} alt="edit icon" className="editIcon" />
+        <EditIcon className="editIcon" />
       </ProfilePictureCard>
 
       <div className="formWrapper">

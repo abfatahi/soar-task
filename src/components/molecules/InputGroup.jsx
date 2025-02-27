@@ -25,6 +25,7 @@ const InputGroup = ({ label, name, type, value, onChange }) => {
         type={type}
         value={isDateOfBirth ? formatDate(value) : value}
         onChange={isDateOfBirth ? undefined : onChange}
+        readOnly={isDateOfBirth ? true : false}
       />
       {validationError && <p className="validationError">{validationError}</p>}
     </InputGroupContainer>

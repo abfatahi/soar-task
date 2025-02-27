@@ -13,7 +13,7 @@ const InputField = ({
 }) => {
   return (
     <InputContainer className={className} $isFlat={skin === "flat"}>
-      {icon && <IconWrapper src={icon} alt={`${type}-icon`} />}
+      {icon && <span className="icon">{icon}</span>}
       <StyledInput
         type={type}
         placeholder={placeholder}
@@ -48,16 +48,16 @@ const InputContainer = styled.div`
   background: ${({ $isFlat }) =>
     $isFlat ? "var(--color-gray-lighter)" : "transparent"};
   border-radius: ${({ $isFlat }) => ($isFlat ? "40px" : "15px")};
-`;
 
-const IconWrapper = styled.img`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const StyledInput = styled.input`

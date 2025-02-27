@@ -9,9 +9,9 @@ import { InputField } from "@components/molecules";
 import { layoutContent } from "@/constants/content";
 
 import ProfilePicture from "@assets/images/profile.png";
-import SearchIcon from "@assets/icons/search.svg";
-import SettingsIcon from "@assets/icons/settings-info.svg";
-import NotificationIcon from "@assets/icons/notification.svg";
+import SearchIcon from "@assets/icons/search.svg?react";
+import SettingsIcon from "@assets/icons/settings-info.svg?react";
+import NotificationIcon from "@assets/icons/notification.svg?react";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -31,12 +31,12 @@ const Navbar = () => {
           placeholder={layoutContent.searchPlaceholder}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          icon={SearchIcon}
+          icon={<SearchIcon />}
         />
 
         {NavCTAs.map((cta) => (
           <div key={cta.title} className="icon_with_background">
-            <img src={cta.icon} alt={cta.title} />
+            {cta.icon}
           </div>
         ))}
 
@@ -53,8 +53,8 @@ const Navbar = () => {
 export default Navbar;
 
 const NavCTAs = [
-  { title: "settings icon", icon: SettingsIcon },
-  { title: "notification icon", icon: NotificationIcon },
+  { title: "settings icon", icon: <SettingsIcon /> },
+  { title: "notification icon", icon: <NotificationIcon /> },
 ];
 
 const NavbarContainer = styled.nav`

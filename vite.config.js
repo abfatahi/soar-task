@@ -1,6 +1,7 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig, loadEnv } from "vite";
 import path from "path";
+import svgr from "vite-plugin-svgr";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
@@ -8,7 +9,7 @@ export default defineConfig(({ mode }) => {
   const DEFAULT_VITE_PORT = 5173;
 
   return {
-    plugins: [react()],
+    plugins: [react(), svgr(),],
     server: {
       port: parseInt(env.VITE_PORT) || DEFAULT_VITE_PORT,
     },
