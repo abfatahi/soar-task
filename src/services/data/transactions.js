@@ -1,3 +1,8 @@
+import LiviaImage from "@assets/images/livia.png";
+import RandyImage from "@assets/images/randy.png";
+import JohnImage from "@assets/images/john.png";
+import AvatarImage from "@assets/images/avatar.png";
+
 const transactions = [
   {
     type: "debit",
@@ -37,11 +42,36 @@ const transactions = [
 ];
 
 const beneficiaries = [
-  { name: "Livia Bator", accountNumber: "3000000001", title: "CEO" },
-  { name: "Randy Press", accountNumber: "3000000002", title: "Director" },
-  { name: "Workman", accountNumber: "3000000003", title: "Designer" },
-  { name: "John Doe", accountNumber: "3000000004", title: "CFO" },
-  { name: "Sarah Doe", accountNumber: "3000000005", title: "HRM" },
+  {
+    name: "Livia Bator",
+    accountNumber: "3000000002",
+    title: "CEO",
+    profilePicture: LiviaImage,
+  },
+  {
+    name: "Randy Press",
+    accountNumber: "3000000003",
+    title: "Director",
+    profilePicture: RandyImage,
+  },
+  {
+    name: "John Work",
+    accountNumber: "3000000004",
+    title: "Designer",
+    profilePicture: JohnImage,
+  },
+  {
+    name: "John Doe",
+    accountNumber: "3000000005",
+    title: "CFO",
+    profilePicture: AvatarImage,
+  },
+  {
+    name: "Sarah Doe",
+    accountNumber: "3000000006",
+    title: "HRM",
+    profilePicture: AvatarImage,
+  },
 ];
 
 export { transactions, beneficiaries };

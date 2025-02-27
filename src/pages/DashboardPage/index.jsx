@@ -23,6 +23,7 @@ import {
   CardWrapper,
   Container,
 } from "./components/styles";
+import QuickTransfer from "./components/QuickTransfer";
 
 function DashboardPage() {
   const [cards, setCards] = useState([]);
@@ -101,7 +102,9 @@ function DashboardPage() {
               <BalanceHistory balanceHistory={balanceHistory} />
             </ChartGroup>
 
-            <ChartGroup title={overviewPageContent.quickTransfer} />
+            <ChartGroup title={overviewPageContent.quickTransfer}>
+              <QuickTransfer />
+            </ChartGroup>
           </div>
         </Container>
       }

@@ -9,6 +9,7 @@ const userDetails = {
   city: "San Jose",
   postalCode: "45962",
   country: "USA",
+  accountNumber: "3000000001",
 };
 
 export { userDetails };
