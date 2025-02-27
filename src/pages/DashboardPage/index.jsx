@@ -87,22 +87,34 @@ function DashboardPage() {
             </CardWrapper>
           </div>
           <div className="sectionGroup">
-            <ChartGroup title={overviewPageContent.weeklyActivity}>
+            <ChartGroup
+              className="chartSectionGroup1"
+              title={overviewPageContent.weeklyActivity}
+            >
               <WeeklyActivityChart weeklyActivities={weeklyActivities} />
             </ChartGroup>
 
-            <ChartGroup title={overviewPageContent.expensesStatistics}>
+            <ChartGroup
+              className="chartSectionGroup1"
+              title={overviewPageContent.expensesStatistics}
+            >
               <ExpensesStatisticsChart
                 expensesStatistics={expensesStatistics}
               />
             </ChartGroup>
           </div>
           <div className="sectionGroupReverse">
-            <ChartGroup title={overviewPageContent.quickTransfer}>
+            <ChartGroup
+              className="chartSectionGroup2"
+              title={overviewPageContent.quickTransfer}
+            >
               <QuickTransfer beneficiaries={beneficiaries} />
             </ChartGroup>
 
-            <ChartGroup title={overviewPageContent.balanceHistory}>
+            <ChartGroup
+              className="chartSectionGroup2"
+              title={overviewPageContent.balanceHistory}
+            >
               <BalanceHistory balanceHistory={balanceHistory} />
             </ChartGroup>
           </div>
@@ -112,13 +124,13 @@ function DashboardPage() {
   );
 }
 
-const ChartGroup = ({ title, children }) => {
+const ChartGroup = ({ title, children, className }) => {
   return (
     <CardWrapper className="weeklyActivity">
       <div className="titleGroup">
         <h2>{title}</h2>
       </div>
-      <div className="cardContainer">
+      <div className={`cardContainer ${className}`}>
         <ErrorBoundary>{children}</ErrorBoundary>
       </div>
     </CardWrapper>

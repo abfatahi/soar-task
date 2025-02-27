@@ -28,6 +28,15 @@ const Container = styled.div`
       grid-template-columns: 1fr;
     }
   }
+
+  .chartSectionGroup1 {
+    height: 360px;
+    margin-bottom: 10px;
+  }
+
+  .chartSectionGroup2{
+    height: 300px;
+  }
 `;
 
 const CreditCardsWrapper = styled.section`
