@@ -12,7 +12,7 @@ export const transactionSlice = createSlice({
       return state;
     },
     handleCreateNewTransfer: (state, { payload }) => {
-      state.transfers.push(payload);
+      state.transfers.unshift(payload);
       return state;
     },
   },

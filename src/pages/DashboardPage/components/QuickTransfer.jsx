@@ -16,7 +16,7 @@ const QuickTransfer = ({ beneficiaries }) => {
   const dispatch = useDispatch();
   const [selectedBeneficiary, setSelectedBeneficiary] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [transferAmount, setTransferAmount] = useState(null);
+  const [transferAmount, setTransferAmount] = useState("");
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % beneficiaries.length);
@@ -53,7 +53,7 @@ const QuickTransfer = ({ beneficiaries }) => {
     };
 
     dispatch(handleCreateNewTransfer(newTransfer));
-    setTransferAmount(null);
+    setTransferAmount("");
   };
 
   return (

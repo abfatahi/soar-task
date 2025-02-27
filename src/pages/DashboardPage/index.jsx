@@ -9,10 +9,7 @@ import ExpensesStatisticsChart from "./components/ExpensesStatisticsChart";
 import BalanceHistory from "./components/BalanceHistory";
 
 import { getCards } from "@/services/apis/cards";
-import {
-  getTransactions,
-  getBeneficiaries,
-} from "@/services/apis/transactions";
+import { getBeneficiaries } from "@/services/apis/transactions";
 import {
   getExpensesPercentage,
   getWeeklyActivities,
@@ -83,15 +80,9 @@ function DashboardPage() {
                 </h2>
               </div>
               <div className="cardContainer transactionsGroup">
-                {transfers
-                  ?.slice(0, 3)
-                  .reverse()
-                  .map((transfer, index) => (
-                    <TransactionCard
-                      key={`transaction-${index}`}
-                      {...transfer}
-                    />
-                  ))}
+                {transfers?.slice(0, 3).map((transfer, index) => (
+                  <TransactionCard key={`transaction-${index}`} {...transfer} />
+                ))}
               </div>
             </CardWrapper>
           </div>
