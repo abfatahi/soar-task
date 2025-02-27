@@ -9,7 +9,10 @@ import ExpensesStatisticsChart from "./components/ExpensesStatisticsChart";
 import BalanceHistory from "./components/BalanceHistory";
 
 import { getCards } from "@/services/apis/cards";
-import { getTransactions } from "@/services/apis/transactions";
+import {
+  getTransactions,
+  getBeneficiaries,
+} from "@/services/apis/transactions";
 import {
   getExpensesPercentage,
   getWeeklyActivities,
@@ -31,6 +34,7 @@ function DashboardPage() {
   const [weeklyActivities, setWeeklyActivities] = useState({});
   const [expensesStatistics, setExpensesStatistics] = useState({});
   const [balanceHistory, setBalanceHistory] = useState([]);
+  const [beneficiaries, setBeneficiaries] = useState([]);
 
   useEffect(() => {
     getCards().then((res) => {
@@ -51,6 +55,10 @@ function DashboardPage() {
 
     getBalanceHistory().then((res) => {
       setBalanceHistory(res.data);
+    });
+
+    getBeneficiaries().then((res) => {
+      setBeneficiaries(res.data);
     });
   }, []);
 
@@ -103,7 +111,7 @@ function DashboardPage() {
             </ChartGroup>
 
             <ChartGroup title={overviewPageContent.quickTransfer}>
-              <QuickTransfer />
+              <QuickTransfer beneficiaries={beneficiaries} />
             </ChartGroup>
           </div>
         </Container>

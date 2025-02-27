@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import { beneficiaries } from "../../../services/data/transactions";
 
 import ChevronRightIcon from "@assets/icons/chevron-right.svg?react";
 
-const QuickTransfer = () => {
+const QuickTransfer = ({beneficiaries}) => {
   const [selectBeneficiary, setSelectBeneficiary] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
 
