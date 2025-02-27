@@ -105,13 +105,13 @@ function DashboardPage() {
               />
             </ChartGroup>
           </div>
-          <div className="sectionGroup">
-            <ChartGroup title={overviewPageContent.balanceHistory}>
-              <BalanceHistory balanceHistory={balanceHistory} />
-            </ChartGroup>
-
+          <div className="sectionGroupReverse">
             <ChartGroup title={overviewPageContent.quickTransfer}>
               <QuickTransfer beneficiaries={beneficiaries} />
+            </ChartGroup>
+
+            <ChartGroup title={overviewPageContent.balanceHistory}>
+              <BalanceHistory balanceHistory={balanceHistory} />
             </ChartGroup>
           </div>
         </Container>

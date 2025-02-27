@@ -2,10 +2,14 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import ChevronRightIcon from "@assets/icons/chevron-right.svg?react";
+import InputField from "../../../components/molecules/Inputfield";
+import Button from "../../../components/atoms/Button";
+import { overviewPageContent } from "../../../constants/content";
 
-const QuickTransfer = ({beneficiaries}) => {
+const QuickTransfer = ({ beneficiaries }) => {
   const [selectBeneficiary, setSelectBeneficiary] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [transferAmount, setTransferAmount] = useState(0);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % beneficiaries.length);
@@ -40,6 +44,25 @@ const QuickTransfer = ({beneficiaries}) => {
           <ChevronRightIcon width="16" height="16" />
         </div>
       </div>
+      <div className="formGroup">
+        <p>{overviewPageContent.writeAmount}</p>
+        <div className="inputGroup">
+          <InputField
+            skin="flat"
+            placeholder={overviewPageContent.enterAmount}
+            type="number"
+            onChange={(e) => setTransferAmount(e.target.value)}
+          />
+          <Button
+            type="button"
+            className="sendButton"
+            size="medium"
+            variant="secondary"
+          >
+            {overviewPageContent.send}
+          </Button>
+        </div>
+      </div>
     </QuickTransferContainer>
   );
 };
@@ -51,7 +74,6 @@ const Beneficiary = styled.div`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  width: 105px;
 
   .profilePicture {
     width: 70px;
@@ -86,11 +108,33 @@ const QuickTransferContainer = styled.div`
     align-items: center;
     gap: 1rem;
     position: relative;
+    margin-top: 1rem;
+  }
+
+  .formGroup {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+
+    .inputGroup {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .sendButton {
+      position: absolute;
+      right: 0;
+      width: 125px;
+      height: 50px;
+      border-radius: 50px;
+    }
   }
 
   .chevronArrow {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     box-shadow: 0px 4px 24px var(--color-primary-lighter);
     cursor: pointer;

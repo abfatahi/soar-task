@@ -8,6 +8,12 @@ const Container = styled.div`
     justify-content: space-between;
   }
 
+  .sectionGroupReverse {
+    display: grid;
+    grid-template-columns: 1.2fr 2fr;
+    gap: 30px;
+  }
+
   .sectionGroup {
     display: grid;
     grid-template-columns: 2fr 1fr;
