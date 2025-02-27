@@ -7,9 +7,12 @@ export default defineConfig(() => {
   const DEFAULT_APP_PORT = 3000;
 
   return {
-    plugins: [react(), svgr()],
+    base: "/",
+    build: { outDir: "dist" },
+    plugins: [react(), svgr({ svgrOptions: { icon: true } })],
     server: {
       port: DEFAULT_APP_PORT,
+      open: true,
     },
     resolve: {
       alias: {
