@@ -34,7 +34,7 @@ const Container = styled.div`
     margin-bottom: 10px;
   }
 
-  .chartSectionGroup2{
+  .chartSectionGroup2 {
     height: 300px;
   }
 `;
@@ -145,10 +145,18 @@ const QuickTransferContainer = styled.div`
     gap: 2rem;
     margin-top: 2rem;
 
+    p {
+    width: max-content;
+      @media (max-width: 425px) {
+        font-size: 12px;
+      }
+    }
+
     .inputGroup {
       position: relative;
       display: flex;
       align-items: center;
+      
     }
 
     .sendButton {
@@ -157,6 +165,18 @@ const QuickTransferContainer = styled.div`
       width: 125px;
       height: 50px;
       border-radius: 50px;
+
+      .sendIcon {
+        @media (max-width: 425px) {
+          width: 16px;
+          height: 14px;
+        }
+      }
+
+      @media (max-width: 425px) {
+        height: 40px;
+              width: 100px;
+      }
     }
   }
 

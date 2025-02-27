@@ -101,7 +101,7 @@ const QuickTransfer = ({ beneficiaries }) => {
             onClick={handleCreateTransfer}
           >
             {overviewPageContent.send}
-            <SendIcon />
+            <SendIcon className="sendIcon"/>
           </Button>
         </div>
       </div>
