@@ -19,18 +19,26 @@ import ServicesIcon from "@assets/icons/services.svg?react";
 import PriviledgesIcon from "@assets/icons/priviledges.svg?react";
 import SettingsIcon from "@assets/icons/settings.svg?react";
 import SettingsActiveIcon from "@assets/icons/settings-active.svg?react";
+import useIsMobile from "../../hooks/useIsMobile";
+import { handleHideBurgerMenu } from "../../redux/reducers/user";
 
-const AsideNavLink = ({  text, isActive, link }) => {
+const AsideNavLink = ({ text, isActive, link }) => {
   const dispatch = useDispatch();
 
+  const isMobile = useIsMobile();
+
   const handleSidebarTabChange = useCallback(() => {
+    if (isMobile) {
+      dispatch(handleHideBurgerMenu());
+    }
+
     const validPages = ["Dashboard", "Settings"];
     const currentTab = validPages.includes(text)
       ? text
       : layoutContent.dashboard;
 
     dispatch(handleTabChange(currentTab));
-  }, [dispatch, text]);
+  }, [dispatch, text, isMobile]);
 
   const linkIconMap = {
     Dashboard: isActive ? <DashboardActiveIcon /> : <DashboardIcon />,
@@ -72,5 +80,9 @@ const AsideNavLinkContainer = styled(Link)`
     font-size: 18px;
     font-weight: 500;
     color: var(--color-black-lightest);
+
+    @media (max-width: 425px) {
+      font-size: 16px;
+    }
   }
 `;

@@ -9,23 +9,22 @@ import { sidebarLinks } from "@/constants/routes";
 import { useSelector } from "react-redux";
 import { userSelector } from "@/redux/reducers/user";
 
-
 const Sidebar = () => {
   const { activeTab } = useSelector(userSelector);
   return (
     <SidebarContainer>
       <ErrorBoundary>
-      <Logo />
-      {sidebarLinks.map((tab) => {
-        const { key, ...rest } = tab;
-        return (
-          <AsideNavLink
-          key={tab.key}
-          {...rest}
-          isActive={activeTab === tab.text}
-          />
-        );
-      })}
+        <Logo />
+        {sidebarLinks.map((tab) => {
+          const { key, ...rest } = tab;
+          return (
+            <AsideNavLink
+              key={tab.key}
+              {...rest}
+              isActive={activeTab === tab.text}
+            />
+          );
+        })}
       </ErrorBoundary>
     </SidebarContainer>
   );

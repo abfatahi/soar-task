@@ -12,6 +12,10 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: 1.2fr 2fr;
     gap: 30px;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   .sectionGroup {

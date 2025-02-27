@@ -5,6 +5,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     activeTab: layoutContent.dashboard,
+    showBurgerMenu: false,
     profile: {
       name: "",
       email: "",
@@ -28,9 +29,24 @@ export const userSlice = createSlice({
       state.profile = payload;
       return state;
     },
+
+    handleShowBurgerMenu: (state) => {
+      state.showBurgerMenu = true;
+      return state;
+    },
+
+    handleHideBurgerMenu: (state) => {
+      state.showBurgerMenu = false;
+      return state;
+    },
   },
 });
 
-export const { handleTabChange, handleUpdateUserData } = userSlice.actions;
+export const {
+  handleTabChange,
+  handleUpdateUserData,
+  handleShowBurgerMenu,
+  handleHideBurgerMenu,
+} = userSlice.actions;
 
 export const userSelector = (state) => state.user;

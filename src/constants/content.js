@@ -1,7 +1,7 @@
 const layoutContent = {
   loading: "Loading...",
   // Sidebar
-  appName: "StarPay", // TODO: change app name
+  appName: "Soar Task",
   dashboard: "Dashboard",
   transactions: "Transactions",
   accounts: "Accounts",

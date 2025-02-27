@@ -1,8 +1,8 @@
-import styled from "styled-components";
-
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "@/redux/reducers/user";
+
+import { handleShowBurgerMenu } from "@/redux/reducers/user";
 
 import { InputField } from "@components/molecules";
 
@@ -12,8 +12,13 @@ import ProfilePicture from "@assets/images/profile.png";
 import SearchIcon from "@assets/icons/search.svg?react";
 import SettingsIcon from "@assets/icons/settings-info.svg?react";
 import NotificationIcon from "@assets/icons/notification.svg?react";
+import HamburgerIcon from "@assets/icons/menu.svg?react";
+
+import { NavbarContainer } from "./styles";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  
   const [searchQuery, setSearchQuery] = useState("");
   const { activeTab } = useSelector(userSelector);
 
@@ -22,30 +27,48 @@ const Navbar = () => {
 
   return (
     <NavbarContainer>
-      <h1>{title}</h1>
-      <div className="nav_group">
-        <InputField
-          className="search_input"
-          skin="flat"
-          type="search"
-          placeholder={layoutContent.searchPlaceholder}
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          icon={<SearchIcon />}
+      <div className="navGroup">
+        <HamburgerIcon
+          className="showOnMobile"
+          onClick={() => dispatch(handleShowBurgerMenu())}
         />
+        <h1>{title}</h1>
+        <div className="navCTAGroup">
+          <InputField
+            className="search_input hideOnSmallScreen"
+            skin="flat"
+            type="search"
+            placeholder={layoutContent.searchPlaceholder}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            icon={<SearchIcon />}
+          />
 
-        {NavCTAs.map((cta) => (
-          <div key={cta.title} className="icon_with_background">
-            {cta.icon}
-          </div>
-        ))}
+          {NavCTAs.map((cta) => (
+            <div
+              key={cta.title}
+              className="icon_with_background hideOnSmallScreen"
+            >
+              {cta.icon}
+            </div>
+          ))}
 
-        <img
-          className="profile_image"
-          src={ProfilePicture}
-          alt="Profile picture"
-        />
+          <img
+            className="profile_image"
+            src={ProfilePicture}
+            alt="Profile picture"
+          />
+        </div>
       </div>
+      <InputField
+        className="showOnTablet mobileSearch"
+        skin="flat"
+        type="search"
+        placeholder={layoutContent.searchPlaceholder}
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        icon={<SearchIcon />}
+      />
     </NavbarContainer>
   );
 };
@@ -56,61 +79,3 @@ const NavCTAs = [
   { title: "settings icon", icon: <SettingsIcon /> },
   { title: "notification icon", icon: <NotificationIcon /> },
 ];
-
-const NavbarContainer = styled.nav`
-  position: sticky;
-  top: 0;
-  margin-left: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 101px;
-  width: calc(100vw - 250px);
-  background-color: var(--color-white);
-  border-bottom: 1px solid var(--color-primary-lighter);
-  z-index: var(--z-index-highest);
-  padding: 0 40px;
-
-  @media (max-width: 425px) {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  @media (max-width: 768px) {
-    .search_input {
-      display: none;
-    }
-  }
-
-  .nav_group {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-
-    .profile_image {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-    }
-  }
-
-  .icon_with_background {
-    width: 50px;
-    height: 50px;
-    background: var(--color-gray-lighter);
-    border-radius: 50%;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    @media (max-width: 425px) {
-      display: none;
-    }
-  }
-
-  h1 {
-    font-size: 28px;
-    font-weight: 600;
-  }
-`;
