@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "@/redux/reducers/user";
+
+import { handleShowBurgerMenu } from "@/redux/reducers/user";
 
 import { InputField } from "@components/molecules";
 
@@ -15,6 +17,8 @@ import HamburgerIcon from "@assets/icons/menu.svg?react";
 import { NavbarContainer } from "./styles";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  
   const [searchQuery, setSearchQuery] = useState("");
   const { activeTab } = useSelector(userSelector);
 
@@ -23,8 +27,11 @@ const Navbar = () => {
 
   return (
     <NavbarContainer>
-      <div class="navGroup">
-        <HamburgerIcon className="showOnMobile" />
+      <div className="navGroup">
+        <HamburgerIcon
+          className="showOnMobile"
+          onClick={() => dispatch(handleShowBurgerMenu())}
+        />
         <h1>{title}</h1>
         <div className="navCTAGroup">
           <InputField

@@ -5,14 +5,16 @@ import ErrorBoundary from "@/components/layouts/ErrorBoundary";
 
 import { sidebarLinks } from "@/constants/routes";
 import { layoutContent } from "@/constants/content";
+import { handleHideBurgerMenu } from "@/redux/reducers/user";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "@/redux/reducers/user";
 
 import LogoImage from "@assets/icons/logo.svg?react";
 import CancelIcon from "@assets/icons/cancel.svg?react";
 
 const BurgerMenu = () => {
+  const dispatch = useDispatch();
   const { activeTab } = useSelector(userSelector);
   return (
     <BurgerMenuContainer>
@@ -22,7 +24,7 @@ const BurgerMenu = () => {
             <LogoImage />
             <p>{layoutContent.appName}</p>
           </div>
-          <CancelIcon />
+          <CancelIcon onClick={() => dispatch(handleHideBurgerMenu())} />
         </div>
         {sidebarLinks.map((tab) => {
           const { key, ...rest } = tab;

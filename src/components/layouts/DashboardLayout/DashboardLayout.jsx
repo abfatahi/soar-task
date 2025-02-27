@@ -1,5 +1,7 @@
-
 import styled from "styled-components";
+
+import { useSelector } from "react-redux";
+import { userSelector } from "@/redux/reducers/user";
 
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
@@ -7,9 +9,10 @@ import Content from "./components/Content";
 import BurgerMenu from "./components/BurgerMenu";
 
 const DashboardLayout = ({ children }) => {
+  const { showBurgerMenu } = useSelector(userSelector);
   return (
     <LayoutContainer>
-      <BurgerMenu/>
+      {showBurgerMenu && <BurgerMenu />}
       <Navbar />
       <Sidebar />
       <Content>{children}</Content>
