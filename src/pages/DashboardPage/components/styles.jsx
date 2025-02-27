@@ -84,4 +84,86 @@ const CardWrapper = styled.section`
   }
 `;
 
-export { Container, CreditCardsWrapper, CardWrapper };
+const Beneficiary = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+
+  .profilePicture {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-primary);
+    margin-bottom: 5px;
+  }
+
+  .title {
+    color: var(--color-primary-light);
+  }
+`;
+
+const QuickTransferContainer = styled.div`
+  .selected {
+    h3,
+    .title {
+      font-weight: 600;
+    }
+  }
+
+  .beneficiaryGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    margin-top: 1rem;
+  }
+
+  .formGroup {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+
+    .inputGroup {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .sendButton {
+      position: absolute;
+      right: 0;
+      width: 125px;
+      height: 50px;
+      border-radius: 50px;
+    }
+  }
+
+  .chevronArrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0px 4px 24px var(--color-primary-lighter);
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+export {
+  Container,
+  CreditCardsWrapper,
+  CardWrapper,
+  QuickTransferContainer,
+  Beneficiary,
+};
