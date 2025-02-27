@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { layoutContent } from "@/constants/content";
 
-import LogoImage from "@assets/icons/logo.svg";
+import LogoImage from "@assets/icons/logo.svg?react";
 
 const Logo = () => {
   return (
     <LogoContainer>
-      <img src={LogoImage} alt="App logo"/>
+      <LogoImage />
       <p>{layoutContent.appName}</p>
     </LogoContainer>
   );
