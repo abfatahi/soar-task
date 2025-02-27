@@ -72,7 +72,7 @@ const BurgerMenuContainer = styled.aside`
       gap: 1rem;
 
       p {
-        font-size: 25px;
+        font-size: 20px;
         font-weight: 800;
       }
     }

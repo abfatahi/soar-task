@@ -20,7 +20,7 @@ import PriviledgesIcon from "@assets/icons/priviledges.svg?react";
 import SettingsIcon from "@assets/icons/settings.svg?react";
 import SettingsActiveIcon from "@assets/icons/settings-active.svg?react";
 
-const AsideNavLink = ({  text, isActive, link }) => {
+const AsideNavLink = ({ text, isActive, link }) => {
   const dispatch = useDispatch();
 
   const handleSidebarTabChange = useCallback(() => {
@@ -72,5 +72,9 @@ const AsideNavLinkContainer = styled(Link)`
     font-size: 18px;
     font-weight: 500;
     color: var(--color-black-lightest);
+
+    @media (max-width: 425px) {
+      font-size: 16px;
+    }
   }
 `;
