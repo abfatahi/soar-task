@@ -10,13 +10,15 @@ const ContentContainer = styled.main`
   position: relative;
   left: 250px;
   width: calc(100vw - 250px);
-  min-height: calc(100vh - 101px);
+  min-height: calc(100vh - 148px);
   background: var(--color-gray-lightest);
   padding: 30px 40px;
   z-index: (--z-index-highest);
 
   @media (max-width: 768px) {
+    min-height: calc(100vh - 101px);
     padding: 1rem;
+    background: transparent;
   }
 
   @media (max-width: 425px) {

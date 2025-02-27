@@ -12,6 +12,7 @@ import ProfilePicture from "@assets/images/profile.png";
 import SearchIcon from "@assets/icons/search.svg?react";
 import SettingsIcon from "@assets/icons/settings-info.svg?react";
 import NotificationIcon from "@assets/icons/notification.svg?react";
+import HamburgerIcon from "@assets/icons/menu.svg?react";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,30 +23,45 @@ const Navbar = () => {
 
   return (
     <NavbarContainer>
-      <h1>{title}</h1>
-      <div className="nav_group">
-        <InputField
-          className="search_input"
-          skin="flat"
-          type="search"
-          placeholder={layoutContent.searchPlaceholder}
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          icon={<SearchIcon />}
-        />
+      <div class="navGroup">
+        <HamburgerIcon className="showOnMobile" />
+        <h1>{title}</h1>
+        <div className="navCTAGroup">
+          <InputField
+            className="search_input hideOnSmallScreen"
+            skin="flat"
+            type="search"
+            placeholder={layoutContent.searchPlaceholder}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            icon={<SearchIcon />}
+          />
 
-        {NavCTAs.map((cta) => (
-          <div key={cta.title} className="icon_with_background">
-            {cta.icon}
-          </div>
-        ))}
+          {NavCTAs.map((cta) => (
+            <div
+              key={cta.title}
+              className="icon_with_background hideOnSmallScreen"
+            >
+              {cta.icon}
+            </div>
+          ))}
 
-        <img
-          className="profile_image"
-          src={ProfilePicture}
-          alt="Profile picture"
-        />
+          <img
+            className="profile_image"
+            src={ProfilePicture}
+            alt="Profile picture"
+          />
+        </div>
       </div>
+      <InputField
+        className="showOnTablet mobileSearch"
+        skin="flat"
+        type="search"
+        placeholder={layoutContent.searchPlaceholder}
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        icon={<SearchIcon />}
+      />
     </NavbarContainer>
   );
 };
@@ -63,7 +79,8 @@ const NavbarContainer = styled.nav`
   margin-left: 250px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   height: 101px;
   width: calc(100vw - 250px);
   background-color: var(--color-white);
@@ -71,18 +88,50 @@ const NavbarContainer = styled.nav`
   z-index: var(--z-index-highest);
   padding: 0 40px;
 
+  .navGroup {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 768px) {
+    height: max-content;
+    padding: 16px 24px;
+    border-bottom: none;
+
+    .hideOnSmallScreen {
+      display: none;
+    }
+  }
+
   @media (max-width: 425px) {
     margin-left: 0;
     width: 100%;
   }
 
-  @media (max-width: 768px) {
-    .search_input {
-      display: none;
+  .showOnMobile {
+    display: none;
+
+    @media (max-width: 425px) {
+      display: block;
     }
   }
 
-  .nav_group {
+  .showOnTablet {
+    display: none;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
+  .mobileSearch {
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .navCTAGroup {
     display: flex;
     align-items: center;
     gap: 30px;
