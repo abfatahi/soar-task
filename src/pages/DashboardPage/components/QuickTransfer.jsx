@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import InputField from "@components/molecules/Inputfield";
 import Button from "@components/atoms/Button";
 
+import { handleCreateNewTransfer } from "@/redux/reducers/transactions";
 import { overviewPageContent } from "@/constants/content";
 
 import ChevronRightIcon from "@assets/icons/chevron-right.svg?react";
@@ -11,9 +13,10 @@ import SendIcon from "@assets/icons/send.svg?react";
 import { Beneficiary, QuickTransferContainer } from "./styles";
 
 const QuickTransfer = ({ beneficiaries }) => {
-  const [selectedBeneficiary, setSelectedBeneficiary] = useState({});
+  const dispatch = useDispatch();
+  const [selectedBeneficiary, setSelectedBeneficiary] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [transferAmount, setTransferAmount] = useState("");
+  const [transferAmount, setTransferAmount] = useState(null);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % beneficiaries.length);
@@ -33,6 +36,24 @@ const QuickTransfer = ({ beneficiaries }) => {
 
   const isValidTransfer = () => {
     return selectedBeneficiary && transferAmount > 0;
+  };
+
+  const handleCreateTransfer = () => {
+    const transferDate = new Date()?.toISOString()?.split("T")[0];
+
+    const newTransfer = {
+      type: "debit",
+      description: `Cash transfer to ${
+        selectedBeneficiary?.name?.split(" ")[0]
+      }`,
+      provider: "card",
+      amount: transferAmount,
+      to: selectedBeneficiary.accountNumber,
+      date: transferDate,
+    };
+
+    dispatch(handleCreateNewTransfer(newTransfer));
+    setTransferAmount(null);
   };
 
   return (
@@ -77,6 +98,7 @@ const QuickTransfer = ({ beneficiaries }) => {
             size="medium"
             variant="secondary"
             disabled={!isValidTransfer()}
+            onClick={handleCreateTransfer}
           >
             {overviewPageContent.send}
             <SendIcon />

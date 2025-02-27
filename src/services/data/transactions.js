@@ -5,11 +5,13 @@ import AvatarImage from "@assets/images/avatar.png";
 
 const transactions = [
   {
-    type: "debit",
-    description: "Deposit from my card",
-    provider: "card",
-    date: "2021-01-28",
-    amount: "850",
+    type: "credit",
+    description: "Jemi Wilson",
+    provider: "venmo",
+    date: "2021-01-21",
+    amount: "5400",
+    to: "3000000001",
+    from: "3000000008",
   },
   {
     type: "credit",
@@ -17,27 +19,17 @@ const transactions = [
     provider: "paypal",
     date: "2021-01-25",
     amount: "2500",
-  },
-  {
-    type: "credit",
-    description: "Jemi Wilson",
-    provider: "venmo",
-    date: "2021-01-21",
-    amount: "5400",
+    to: "3000000001",
+    from: "3000000008",
   },
   {
     type: "debit",
-    description: "John Doe",
+    description: "Deposit from my card",
     provider: "card",
-    date: "2021-01-21",
-    amount: "500",
-  },
-  {
-    type: "debit",
-    description: "Sarah Doe",
-    provider: "card",
-    date: "2021-01-20",
-    amount: "1500",
+    date: "2021-01-28",
+    amount: "850",
+    from: "3000000001",
+    to: "3000000008",
   },
 ];
 

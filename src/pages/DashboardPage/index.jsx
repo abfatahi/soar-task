@@ -27,22 +27,20 @@ import {
   Container,
 } from "./components/styles";
 import QuickTransfer from "./components/QuickTransfer";
+import { useSelector } from "react-redux";
+import { transactionSelector } from "../../redux/reducers/transactions";
 
 function DashboardPage() {
   const [cards, setCards] = useState([]);
-  const [transactions, setTransactions] = useState([]);
   const [weeklyActivities, setWeeklyActivities] = useState({});
   const [expensesStatistics, setExpensesStatistics] = useState({});
   const [balanceHistory, setBalanceHistory] = useState([]);
   const [beneficiaries, setBeneficiaries] = useState([]);
 
+  const { transfers } = useSelector(transactionSelector);
   useEffect(() => {
     getCards().then((res) => {
       setCards(res.data);
-    });
-
-    getTransactions().then((res) => {
-      setTransactions(res.data);
     });
 
     getWeeklyActivities().then((res) => {
@@ -85,12 +83,15 @@ function DashboardPage() {
                 </h2>
               </div>
               <div className="cardContainer transactionsGroup">
-                {transactions?.slice(0, 3).map((transaction, index) => (
-                  <TransactionCard
-                    key={`transaction-${index}`}
-                    {...transaction}
-                  />
-                ))}
+                {transfers
+                  ?.slice(0, 3)
+                  .reverse()
+                  .map((transfer, index) => (
+                    <TransactionCard
+                      key={`transaction-${index}`}
+                      {...transfer}
+                    />
+                  ))}
               </div>
             </CardWrapper>
           </div>

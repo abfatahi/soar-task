@@ -56,7 +56,7 @@ class ExpensesStatisticsChart extends Component {
       <Chart
         options={{ ...this.state.options, labels: categories }}
         series={series}
-        type="polarArea"
+        type="pie"
         width="100%"
         height="322"
       />

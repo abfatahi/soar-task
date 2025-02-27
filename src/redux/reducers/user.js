@@ -4,8 +4,6 @@ import { layoutContent } from "@/constants/content";
 export const userSlice = createSlice({
   name: "user",
   initialState: {
-    loading: false,
-    errors: null,
     activeTab: layoutContent.dashboard,
     profile: {
       name: "",

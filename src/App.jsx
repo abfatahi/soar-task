@@ -8,8 +8,10 @@ import {
 import { appRoutes } from "./constants/routes";
 import Loader from "./components/atoms/Loader";
 import { getUserDetails } from "@/services/apis/user";
+import { getTransactions } from "@/services/apis/transactions";
 import { useDispatch } from "react-redux";
 import { handleUpdateUserData } from "./redux/reducers/user";
+import { handleSetTransfers } from "./redux/reducers/transactions";
 
 const DashboardPage = lazy(() => import("@pages/DashboardPage"));
 const SettingsPage = lazy(() => import("@pages/SettingsPage"));
@@ -20,6 +22,10 @@ const App = () => {
   useEffect(() => {
     getUserDetails().then((res) => {
       dispatch(handleUpdateUserData(res.data));
+    });
+
+    getTransactions().then((res) => {
+      dispatch(handleSetTransfers(res.data));
     });
   }, [dispatch]);
 
