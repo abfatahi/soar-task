@@ -1,18 +1,28 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import ChevronRightIcon from "@assets/icons/chevron-right.svg?react";
 import InputField from "../../../components/molecules/Inputfield";
 import Button from "../../../components/atoms/Button";
 import { overviewPageContent } from "../../../constants/content";
 
+import ChevronRightIcon from "@assets/icons/chevron-right.svg?react";
+import SendIcon from "@assets/icons/send.svg?react";
+
 const QuickTransfer = ({ beneficiaries }) => {
   const [selectBeneficiary, setSelectBeneficiary] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [transferAmount, setTransferAmount] = useState(0);
+  const [transferAmount, setTransferAmount] = useState("");
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % beneficiaries.length);
+  };
+
+  const handleAmountChange = (e) => {
+    const value = e.target.value;
+    // Restrict input to 8 digits
+    if (value.length <= 8) {
+      setTransferAmount(value);
+    }
   };
 
   const visibleBeneficiaries = beneficiaries.slice(
@@ -25,7 +35,7 @@ const QuickTransfer = ({ beneficiaries }) => {
       <div className="beneficiaryGroup">
         {visibleBeneficiaries.map((beneficiary) => (
           <Beneficiary
-            key={beneficiary.id}
+            key={beneficiary.name}
             className={
               selectBeneficiary?.name === beneficiary.name ? "selected" : ""
             }
@@ -41,7 +51,7 @@ const QuickTransfer = ({ beneficiaries }) => {
           </Beneficiary>
         ))}
         <div className="chevronArrow" onClick={handleNext}>
-          <ChevronRightIcon width="16" height="16" />
+          <ChevronRightIcon />
         </div>
       </div>
       <div className="formGroup">
@@ -51,7 +61,10 @@ const QuickTransfer = ({ beneficiaries }) => {
             skin="flat"
             placeholder={overviewPageContent.enterAmount}
             type="number"
-            onChange={(e) => setTransferAmount(e.target.value)}
+            value={transferAmount}
+            onChange={handleAmountChange}
+            min="1"
+            max="99999999"
           />
           <Button
             type="button"
@@ -60,6 +73,7 @@ const QuickTransfer = ({ beneficiaries }) => {
             variant="secondary"
           >
             {overviewPageContent.send}
+            <SendIcon />
           </Button>
         </div>
       </div>
