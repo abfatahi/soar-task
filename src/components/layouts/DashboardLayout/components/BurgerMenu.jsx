@@ -46,7 +46,7 @@ export default BurgerMenu;
 const BurgerMenuContainer = styled.aside`
   display: none;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   background-color: var(--color-white);
   z-index: (--z-index-highest);
 

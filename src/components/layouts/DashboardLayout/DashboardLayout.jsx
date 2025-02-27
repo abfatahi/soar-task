@@ -11,12 +11,17 @@ import BurgerMenu from "./components/BurgerMenu";
 const DashboardLayout = ({ children }) => {
   const { showBurgerMenu } = useSelector(userSelector);
   return (
-    <LayoutContainer>
-      {showBurgerMenu && <BurgerMenu />}
-      <Navbar />
-      <Sidebar />
-      <Content>{children}</Content>
-    </LayoutContainer>
+    <>
+      {showBurgerMenu ? (
+        <BurgerMenu />
+      ) : (
+        <LayoutContainer>
+          <Navbar />
+          <Sidebar />
+          <Content>{children}</Content>
+        </LayoutContainer>
+      )}
+    </>
   );
 };
 
