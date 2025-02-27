@@ -56,6 +56,14 @@ const NavbarContainer = styled.nav`
   .mobileSearch {
     margin-top: 1rem;
     width: 100%;
+
+    .search {
+      margin-bottom: -18px;
+
+        @media (max-width: 425px) {
+         margin-bottom: -12px;
+      }
+    }
   }
 
   .navCTAGroup {
@@ -80,7 +88,7 @@ const NavbarContainer = styled.nav`
     }
   }
 
-  .icon_with_background {
+  .iconWithBackground {
     width: 50px;
     height: 50px;
     background: var(--color-gray-lighter);

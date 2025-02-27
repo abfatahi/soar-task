@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { useCallback } from "react";
+import useIsMobile from "@/hooks/useIsMobile";
 
 import { handleTabChange } from "@/redux/reducers/user";
 import { layoutContent } from "@/constants/content";
+import { handleHideBurgerMenu } from "@/redux/reducers/user";
 
 import styled from "styled-components";
 
@@ -19,8 +21,6 @@ import ServicesIcon from "@assets/icons/services.svg?react";
 import PriviledgesIcon from "@assets/icons/priviledges.svg?react";
 import SettingsIcon from "@assets/icons/settings.svg?react";
 import SettingsActiveIcon from "@assets/icons/settings-active.svg?react";
-import useIsMobile from "../../hooks/useIsMobile";
-import { handleHideBurgerMenu } from "../../redux/reducers/user";
 
 const AsideNavLink = ({ text, isActive, link }) => {
   const dispatch = useDispatch();

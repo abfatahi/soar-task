@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import { DashboardLayout } from "@components/layouts";
 import ErrorBoundary from "@/components/layouts/ErrorBoundary";
@@ -7,7 +8,9 @@ import { CreditCard, TransactionCard } from "@/components/molecules";
 import WeeklyActivityChart from "./components/WeeklyActivityChart";
 import ExpensesStatisticsChart from "./components/ExpensesStatisticsChart";
 import BalanceHistory from "./components/BalanceHistory";
+import QuickTransfer from "./components/QuickTransfer";
 
+import { transactionSelector } from "@/redux/reducers/transactions";
 import { getCards } from "@/services/apis/cards";
 import { getBeneficiaries } from "@/services/apis/transactions";
 import {
@@ -23,9 +26,6 @@ import {
   CardWrapper,
   Container,
 } from "./components/styles";
-import QuickTransfer from "./components/QuickTransfer";
-import { useSelector } from "react-redux";
-import { transactionSelector } from "../../redux/reducers/transactions";
 
 function DashboardPage() {
   const [cards, setCards] = useState([]);

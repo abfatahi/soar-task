@@ -47,7 +47,7 @@ const Navbar = () => {
           {NavCTAs.map((cta) => (
             <div
               key={cta.title}
-              className="icon_with_background hideOnSmallScreen"
+              className="iconWithBackground hideOnSmallScreen"
             >
               {cta.icon}
             </div>
@@ -67,7 +67,7 @@ const Navbar = () => {
         placeholder={layoutContent.searchPlaceholder}
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        icon={<SearchIcon />}
+        icon={<SearchIcon className="search" />}
       />
     </NavbarContainer>
   );
